@@ -1,0 +1,9 @@
+.content {
+  max-width: 282px;
+  margin: 0 auto;
+  padding-top: 36px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  gap: 20px;
+}

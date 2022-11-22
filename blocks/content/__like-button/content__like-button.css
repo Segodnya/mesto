@@ -1,0 +1,13 @@
+.content__like-button {
+  margin: 0;
+  width: 22px;
+  height: 19px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  transition: opacity 0.3s ease-in;
+}
+
+.content__like-button:hover {
+  opacity: 0.5;
+}

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="pages/index.css" />
+    <title>mesto: share and like</title>
+  </head>
+  <body class="page">
+    <header class="header">
+      <img
+        src="images/logo.svg"
+        alt="Логотип Место Россия"
+        class="header__logo"
+      />
+    </header>
+    <main>
+      <section class="popup">
+        <div class="popup__bg">
+          <form class="popup__form">
+            <img src="images/close-icon.svg" class="popup__close-button" />
+            <h2 class="popup__title">Редактировать профиль</h2>
+            <input
+              class="popup__input"
+              type="text"
+              name="name"
+              placeholder="Жак-Ив Кусто"
+            />
+            <input
+              class="popup__input"
+              type="text"
+              name="occupation"
+              placeholder="Исследователь океана"
+            />
+            <button class="popup__button" type="submit">Сохранить</button>
+          </form>
+        </div>
+      </section>
+      <section class="profile">
+        <img
+          src="images/profile__avatar.png"
+          alt="Аватар пользователя"
+          class="profile__avatar"
+        />
+        <div class="profile__info">
+          <h2 class="profile__name">
+            Жак-Ив Кусто<a href="#" class="profile__edit-button"></a>
+          </h2>
+          <p class="profile__occupation">Исследователь океана</p>
+        </div>
+        <a href="#" class="profile__add-button"></a>
+      </section>
+      <section class="content">
+        <div class="content__card">
+          <img
+            src="images/img__karachaevsk.png"
+            alt="Карачаевск"
+            class="content__image"
+          />
+          <div class="content__info">
+            <h2 class="content__title">Карачаевск</h2>
+            <a
+              href=""
+              class="content__like-button content__like-button_disabled"
+            ></a>
+          </div>
+        </div>
+        <div class="content__card">
+          <img
+            src="images/img__elbrus.png"
+            alt="Эльбрус"
+            class="content__image"
+          />
+          <div class="content__info">
+            <h2 class="content__title">Эльбрус</h2>
+            <a
+              href=""
+              class="content__like-button content__like-button_disabled"
+            ></a>
+          </div>
+        </div>
+        <div class="content__card">
+          <img
+            src="images/img__dombay.png"
+            alt="Домбай"
+            class="content__image"
+          />
+          <div class="content__info">
+            <h2 class="content__title">Домбай</h2>
+            <a
+              href=""
+              class="content__like-button content__like-button_disabled"
+            ></a>
+          </div>
+        </div>
+        <div class="content__card">
+          <img
+            src="images/img__elbrus.png"
+            alt="Эльбрус"
+            class="content__image"
+          />
+          <div class="content__info">
+            <h2 class="content__title">Эльбрус</h2>
+            <a
+              href=""
+              class="content__like-button content__like-button_disabled"
+            ></a>
+          </div>
+        </div>
+        <div class="content__card">
+          <img
+            src="images/img__dombay.png"
+            alt="Домбай"
+            class="content__image"
+          />
+          <div class="content__info">
+            <h2 class="content__title">Домбай</h2>
+            <a
+              href=""
+              class="content__like-button content__like-button_disabled"
+            ></a>
+          </div>
+        </div>
+        <div class="content__card">
+          <img
+            src="images/img__karachaevsk.png"
+            alt="Карачаевск"
+            class="content__image"
+          />
+          <div class="content__info">
+            <h2 class="content__title">Карачаевск</h2>
+            <a
+              href=""
+              class="content__like-button content__like-button_disabled"
+            ></a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__text">© 2022 Mesto Russia</p>
+    </footer>
+    <script src="js/script.js"></script>
+  </body>
+</html>
