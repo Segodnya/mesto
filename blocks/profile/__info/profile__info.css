@@ -1,6 +1,17 @@
 .profile__info {
   margin: 0 auto;
-  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   padding-top: 26px;
   padding-bottom: 36px;
+}
+
+@media screen and (min-width: 920px) {
+  .profile__info {
+    margin: 0 auto 0 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    justify-content: left;
+  }
 }

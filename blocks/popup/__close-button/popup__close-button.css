@@ -7,3 +7,12 @@
   right: 0;
   cursor: pointer;
 }
+
+@media screen and (min-width: 920px) {
+  .popup__close-button {
+    width: 32px;
+    height: 32px;
+    top: -40px;
+    right: -40px;
+  }
+}

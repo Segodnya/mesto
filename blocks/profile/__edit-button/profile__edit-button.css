@@ -1,5 +1,6 @@
 .profile__edit-button {
-  display: inline-block;
+  display: block;
+  align-self: center;
   width: 18px;
   height: 18px;
   border: 1px solid #fff;
@@ -9,4 +10,10 @@
   background-position: center;
   background-size: contain;
   margin-left: 10px;
+}
+
+@media screen and (min-width: 920px) {
+  .profile__edit-button {
+    margin-left: 18px;
+  }
 }

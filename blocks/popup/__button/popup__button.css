@@ -3,7 +3,8 @@
   margin-top: 45px;
   margin-bottom: 25px;
   width: 238px;
-  height: 46px;
+  min-height: 46px;
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -20,4 +21,15 @@
 
 .popup__button:hover {
   opacity: 0.8;
+}
+
+@media screen and (min-width: 920px) {
+  .popup__button {
+    margin-top: 48px;
+    margin-bottom: 37px;
+    width: 358px;
+    min-height: 50px;
+    font-size: 18px;
+    line-height: 22px;
+  }
 }

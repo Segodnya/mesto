@@ -11,3 +11,9 @@
   background-position: center;
   background-size: auto;
 }
+
+@media screen and (min-width: 920px) {
+  .profile__add-button {
+    width: 150px;
+  }
+}
