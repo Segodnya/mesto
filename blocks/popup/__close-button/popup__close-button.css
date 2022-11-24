@@ -3,7 +3,7 @@
   display: block;
   width: 20px;
   height: 20px;
-  top: calc(50% - 161px - 32px - 20px);
+  top: calc(50% - 161px - 16px - 20px);
   right: calc(50% - 141px);
   background-image: url("../../../images/close-icon.svg");
   background-repeat: no-repeat;

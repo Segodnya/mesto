@@ -1,5 +1,5 @@
 .popup__container {
-  padding-top: 62px;
+  padding-top: 25px;
   display: flex;
   flex-direction: column;
   background: #fff;
@@ -11,7 +11,7 @@
 
 @media screen and (min-width: 920px) {
   .popup__container {
-    padding-top: 73px;
+    padding-top: 34px;
     width: 430px;
     justify-content: flex-start;
     align-items: flex-start;

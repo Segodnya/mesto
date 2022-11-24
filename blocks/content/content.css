@@ -1,2 +1,8 @@
 .content {
 }
+
+@media screen and (min-width: 920px) {
+  .content {
+    margin-left: 8px;
+  }
+}

@@ -4,7 +4,7 @@
   box-sizing: content-box;
   width: 120px;
   height: 120px;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 50%;
 }
 
