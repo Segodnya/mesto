@@ -1,17 +1,17 @@
 .profile__info {
-  margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
+  margin: 26px auto 36px;
+  display: grid;
+  grid-template-areas:
+    "profile__name profile__edit-button"
+    "profile__job profile__job";
   justify-content: center;
-  padding-top: 26px;
-  padding-bottom: 36px;
+  row-gap: 14px;
 }
 
 @media screen and (min-width: 920px) {
   .profile__info {
     margin: 0 auto 0 0;
-    padding-top: 0;
-    padding-bottom: 0;
     justify-content: left;
+    row-gap: 16px;
   }
 }

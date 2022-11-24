@@ -1,7 +1,7 @@
 .content__info {
-  padding: 0 15px 0 21px;
+  padding: 22px 15px 28px 21px;
+  box-sizing: border-box;
   background-color: #fff;
-  min-height: 81px;
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -1,13 +1,9 @@
 .popup__button {
-  margin: 0 auto;
-  margin-top: 45px;
-  margin-bottom: 25px;
+  margin: 45px auto 25px;
+  padding: 14px 0;
   width: 238px;
-  min-height: 46px;
+  height: 46px;
   box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background: #000;
   border-radius: 2px;
   font-style: normal;
@@ -15,7 +11,7 @@
   font-size: 14px;
   line-height: 17px;
   color: #fff;
-  cursor: pointer;
+  border: none;
   transition: opacity 0.3s ease-in;
 }
 
@@ -25,10 +21,10 @@
 
 @media screen and (min-width: 920px) {
   .popup__button {
-    margin-top: 48px;
-    margin-bottom: 37px;
+    margin: 48px auto 37px;
+    padding: 14px 0 18px;
     width: 358px;
-    min-height: 50px;
+    height: 50px;
     font-size: 18px;
     line-height: 22px;
   }

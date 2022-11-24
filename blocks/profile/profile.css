@@ -2,7 +2,6 @@
   margin: 0 auto;
   padding-top: 42px;
   max-width: 282px;
-  max-height: 286px;
   box-sizing: content-box;
 }
 
@@ -10,7 +9,6 @@
   .profile {
     padding-top: 40px;
     max-width: 880px;
-    max-height: 120px;
     display: flex;
     align-items: center;
   }

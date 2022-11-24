@@ -1,14 +1,15 @@
 .header__logo {
   margin: 0;
-  padding-left: 27px;
+  margin-left: 27px;
   display: block;
   width: 103.74px;
   height: 24.4px;
+  object-fit: contain;
 }
 
-@media screen and (min-width: 920px) {
+@media screen and (min-width: 620px) {
   .header__logo {
-    padding-left: 0;
+    margin-left: 0;
     width: 142px;
     height: 33px;
   }

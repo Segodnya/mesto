@@ -7,161 +7,207 @@
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-      href="images/favicon/apple-touch-icon.png"
+      href="./images/favicon/apple-touch-icon.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="images/favicon/favicon-32x32.png"
+      href="./images/favicon/favicon-32x32.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="images/favicon/favicon-16x16.png"
+      href="./images/favicon/favicon-16x16.png"
     />
-    <link rel="manifest" href="images/favicon/site.webmanifest" />
-    <link rel="stylesheet" href="pages/index.css" />
-    <title>mesto: share and like</title>
+    <link rel="manifest" href="./images/favicon/site.webmanifest" />
+    <link rel="stylesheet" href="./pages/index.css" />
+    <title lang="en">mesto: share and like</title>
   </head>
   <body class="page">
     <header class="header">
       <img
-        src="images/logo.svg"
+        src="./images/logo.svg"
         alt="Логотип Место Россия"
         class="header__logo"
       />
     </header>
     <main>
-      <section class="popup">
-        <div class="popup__bg">
-          <form class="popup__container">
-            <img
-              src="images/close-icon.svg"
-              alt="Иконка закрытия окна"
-              class="popup__close-button opacity"
-            />
-            <h2 class="popup__title">Редактировать профиль</h2>
-            <input
-              class="popup__input"
-              type="text"
-              name="name"
-              value="Жак-Ив Кусто"
-            />
-            <input
-              class="popup__input"
-              type="text"
-              name="job"
-              value="Исследователь океана"
-            />
-            <button class="popup__button" type="submit">Сохранить</button>
-          </form>
-        </div>
-      </section>
       <section class="profile">
         <img
-          src="images/profile__avatar.png"
+          src="./images/profile__avatar.png"
           alt="Аватар пользователя"
           class="profile__avatar"
         />
         <div class="profile__info">
-          <h2 class="profile__name">Жак-Ив Кусто</h2>
-          <a href="#" class="profile__edit-button opacity"></a>
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <button
+            type="button"
+            class="button profile__edit-button"
+            aria-label="Кнопка редиктирования профиля"
+          ></button>
           <p class="profile__job">Исследователь океана</p>
         </div>
-        <a href="#" class="profile__add-button opacity"></a>
+        <button
+          type="button"
+          class="button profile__add-button"
+          aria-label="Добавить новый пост"
+        ></button>
       </section>
       <section class="content">
-        <div class="content__card">
-          <img
-            src="images/img__karachaevsk.png"
-            alt="Карачаевск"
-            class="content__image"
-          />
-          <div class="content__info">
-            <h2 class="content__title">Карачаевск</h2>
-            <a
-              href=""
-              class="content__like-button content__like-button_disabled opacity"
-            ></a>
-          </div>
-        </div>
-        <div class="content__card">
-          <img
-            src="images/img__elbrus.png"
-            alt="Эльбрус"
-            class="content__image"
-          />
-          <div class="content__info">
-            <h2 class="content__title">Эльбрус</h2>
-            <a
-              href=""
-              class="content__like-button content__like-button_disabled opacity"
-            ></a>
-          </div>
-        </div>
-        <div class="content__card">
-          <img
-            src="images/img__dombay.png"
-            alt="Домбай"
-            class="content__image"
-          />
-          <div class="content__info">
-            <h2 class="content__title">Домбай</h2>
-            <a
-              href=""
-              class="content__like-button content__like-button_disabled opacity"
-            ></a>
-          </div>
-        </div>
-        <div class="content__card">
-          <img
-            src="images/img__elbrus.png"
-            alt="Эльбрус"
-            class="content__image"
-          />
-          <div class="content__info">
-            <h2 class="content__title">Эльбрус</h2>
-            <a
-              href=""
-              class="content__like-button content__like-button_disabled opacity"
-            ></a>
-          </div>
-        </div>
-        <div class="content__card">
-          <img
-            src="images/img__dombay.png"
-            alt="Домбай"
-            class="content__image"
-          />
-          <div class="content__info">
-            <h2 class="content__title">Домбай</h2>
-            <a
-              href=""
-              class="content__like-button content__like-button_disabled opacity"
-            ></a>
-          </div>
-        </div>
-        <div class="content__card">
-          <img
-            src="images/img__karachaevsk.png"
-            alt="Карачаевск"
-            class="content__image"
-          />
-          <div class="content__info">
-            <h2 class="content__title">Карачаево-Черкессия</h2>
-            <a
-              href=""
-              class="content__like-button content__like-button_disabled opacity"
-            ></a>
-          </div>
-        </div>
+        <ul class="list">
+          <li>
+            <article
+              class="content__card"
+              aria-label="Пост о Карачаевске с фотографией"
+            >
+              <img
+                src="./images/img__karachaevsk.png"
+                alt="Карачаевск"
+                class="content__image"
+              />
+              <div class="content__info">
+                <h2 class="content__title">Карачаевск</h2>
+                <button
+                  type="button"
+                  class="button content__like-button"
+                  aria-label="Отметить пост как понравившийся"
+                ></button>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article
+              class="content__card"
+              aria-label="Пост об Эльбрусе с фотографией"
+            >
+              <img
+                src="./images/img__elbrus.png"
+                alt="Эльбрус"
+                class="content__image"
+              />
+              <div class="content__info">
+                <h2 class="content__title">Эльбрус</h2>
+                <button
+                  type="button"
+                  class="button content__like-button"
+                  aria-label="Отметить пост как понравившийся"
+                ></button>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article
+              class="content__card"
+              aria-label="Пост о Домбае с фотографией"
+            >
+              <img
+                src="./images/img__dombay.png"
+                alt="Домбай"
+                class="content__image"
+              />
+              <div class="content__info">
+                <h2 class="content__title">Домбай</h2>
+                <button
+                  type="button"
+                  class="button content__like-button"
+                  aria-label="Отметить пост как понравившийся"
+                ></button>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article
+              class="content__card"
+              aria-label="Пост об Эльбрусе с фотографией"
+            >
+              <img
+                src="./images/img__elbrus.png"
+                alt="Эльбрус"
+                class="content__image"
+              />
+              <div class="content__info">
+                <h2 class="content__title">Эльбрус</h2>
+                <button
+                  type="button"
+                  class="button content__like-button"
+                  aria-label="Отметить пост как понравившийся"
+                ></button>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article
+              class="content__card"
+              aria-label="Пост о Домбае с фотографией"
+            >
+              <img
+                src="./images/img__dombay.png"
+                alt="Домбай"
+                class="content__image"
+              />
+              <div class="content__info">
+                <h2 class="content__title">Домбай</h2>
+                <button
+                  type="button"
+                  class="button content__like-button"
+                  aria-label="Отметить пост как понравившийся"
+                ></button>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article
+              class="content__card"
+              aria-label="Пост о Карачаево-Черкессии с фотографией"
+            >
+              <img
+                src="./images/img__karachaevsk.png"
+                alt="Карачаевск"
+                class="content__image"
+              />
+              <div class="content__info">
+                <h2 class="content__title">Карачаево-Черкессия</h2>
+                <button
+                  type="button"
+                  class="button content__like-button"
+                  aria-label="Отметить пост как понравившийся"
+                ></button>
+              </div>
+            </article>
+          </li>
+        </ul>
       </section>
     </main>
     <footer class="footer">
-      <p class="footer__text">© 2022 Mesto Russia</p>
+      <p class="footer__text" lang="en">&copy; 2022 Mesto Russia</p>
     </footer>
-    <script src="js/index.js"></script>
+    <div class="popup">
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <form class="popup__container" name="editProfile">
+        <input
+          class="popup__input popup__input_type_name"
+          type="text"
+          name="name"
+          value="Имя"
+          placeholder="Ваше имя"
+        />
+        <input
+          class="popup__input popup__input_type_job"
+          type="text"
+          name="job"
+          value="Профессия"
+          placeholder="Ваша профессия"
+        />
+        <button class="button popup__button" type="submit">Сохранить</button>
+      </form>
+      <button
+        type="reset"
+        class="button popup__close-button"
+        aria-label="Кнопка закрытия формы"
+      ></button>
+    </div>
+    <script src="./scripts/index.js" defer></script>
   </body>
 </html>

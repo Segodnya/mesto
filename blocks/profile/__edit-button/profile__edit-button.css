@@ -8,12 +8,15 @@
   background-image: url("../../../images/profile__edit-button.svg");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: contain;
+  background-size: 7.5px;
   margin-left: 10px;
 }
 
 @media screen and (min-width: 920px) {
   .profile__edit-button {
     margin-left: 18px;
+    width: 24px;
+    height: 24px;
+    background-size: 10px;
   }
 }
