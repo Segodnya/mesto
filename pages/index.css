@@ -7,9 +7,6 @@
 /* Page */
 @import url(../blocks/page/page.css);
 
-/* List */
-@import url(../blocks/list/list.css);
-
 /* Button */
 @import url(../blocks/button/button.css);
 
@@ -25,7 +22,7 @@
 @import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/popup/__form/popup__form.css);
 @import url(../blocks/popup/__input/popup__input.css);
-@import url(../blocks/popup/__button/popup__button.css);
+@import url(../blocks/popup/__save-profile-button/popup__save-profile-button.css);
 
 /* Profile */
 @import url(../blocks/profile/profile.css);
@@ -38,6 +35,7 @@
 
 /* Content */
 @import url(../blocks/content/content.css);
+@import url(../blocks/content/__list/content__list.css);
 @import url(../blocks/content/__card/content__card.css);
 @import url(../blocks/content/__image/content__image.css);
 @import url(../blocks/content/__info/content__info.css);

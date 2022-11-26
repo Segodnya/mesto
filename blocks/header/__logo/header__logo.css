@@ -4,7 +4,7 @@
   display: block;
   width: 103.74px;
   height: 24.4px;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 @media screen and (min-width: 620px) {

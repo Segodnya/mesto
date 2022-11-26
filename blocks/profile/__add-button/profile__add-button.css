@@ -9,11 +9,12 @@
   background-image: url("../../../images/profile__add-button.svg");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 16px;
+  background-size: 16px 16px;
 }
 
 @media screen and (min-width: 920px) {
   .profile__add-button {
     width: 150px;
+    background-size: 22px 22px;
   }
 }

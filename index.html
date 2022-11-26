@@ -55,8 +55,11 @@
           aria-label="Добавить новый пост"
         ></button>
       </section>
-      <section class="content">
-        <ul class="list">
+      <section
+        class="content"
+        aria-label="Карточки с фотографиями пользователя"
+      >
+        <ul class="content__list">
           <li>
             <article
               class="content__card"
@@ -64,7 +67,7 @@
             >
               <img
                 src="./images/img__karachaevsk.png"
-                alt="Карачаевск"
+                alt="Сентинский храм на холме в окружении лесного массива"
                 class="content__image"
               />
               <div class="content__info">
@@ -84,7 +87,7 @@
             >
               <img
                 src="./images/img__elbrus.png"
-                alt="Эльбрус"
+                alt="На горизонте вершина горы Эльбрус в рассветной дымке"
                 class="content__image"
               />
               <div class="content__info">
@@ -104,7 +107,7 @@
             >
               <img
                 src="./images/img__dombay.png"
-                alt="Домбай"
+                alt="Предгорье с хвойными лесами у подножья и заснеженные вершины с грозовыми тучами над ними"
                 class="content__image"
               />
               <div class="content__info">
@@ -124,7 +127,7 @@
             >
               <img
                 src="./images/img__elbrus.png"
-                alt="Эльбрус"
+                alt="На горизонте вершина горы Эльбрус в рассветной дымке"
                 class="content__image"
               />
               <div class="content__info">
@@ -144,7 +147,7 @@
             >
               <img
                 src="./images/img__dombay.png"
-                alt="Домбай"
+                alt="Предгорье с хвойными лесами у подножья и заснеженные вершины с грозовыми тучами над ними"
                 class="content__image"
               />
               <div class="content__info">
@@ -164,7 +167,7 @@
             >
               <img
                 src="./images/img__karachaevsk.png"
-                alt="Карачаевск"
+                alt="Сентинский храм на холме в окружении лесного массива"
                 class="content__image"
               />
               <div class="content__info">
@@ -201,12 +204,14 @@
             value="Профессия"
             placeholder="Ваша профессия"
           />
-          <button class="button popup__button" type="submit">Сохранить</button>
+          <button class="button popup__save-profile-button" type="submit">
+            Сохранить
+          </button>
         </form>
         <button
-          type="reset"
+          type="button"
           class="button popup__close-button"
-          aria-label="Кнопка закрытия формы"
+          aria-label="Кнопка закрытия всплывающего окна"
         ></button>
       </div>
     </div>

@@ -3,7 +3,7 @@
   transition: opacity 0.3s ease-in;
   cursor: pointer;
   border: none;
-  background: rgba(0, 0, 0, 0);
+  background: transparent;
 }
 
 .button:hover {
