@@ -78,6 +78,11 @@
                   aria-label="Отметить пост как понравившийся"
                 ></button>
               </div>
+              <button
+                type="button"
+                class="button content__delete-button"
+                aria-label="Кнопка удаления поста"
+              ></button>
             </article>
           </li>
           <li>
@@ -98,6 +103,11 @@
                   aria-label="Отметить пост как понравившийся"
                 ></button>
               </div>
+              <button
+                type="button"
+                class="button content__delete-button"
+                aria-label="Кнопка удаления поста"
+              ></button>
             </article>
           </li>
           <li>
@@ -118,6 +128,11 @@
                   aria-label="Отметить пост как понравившийся"
                 ></button>
               </div>
+              <button
+                type="button"
+                class="button content__delete-button"
+                aria-label="Кнопка удаления поста"
+              ></button>
             </article>
           </li>
           <li>
@@ -138,6 +153,11 @@
                   aria-label="Отметить пост как понравившийся"
                 ></button>
               </div>
+              <button
+                type="button"
+                class="button content__delete-button"
+                aria-label="Кнопка удаления поста"
+              ></button>
             </article>
           </li>
           <li>
@@ -158,6 +178,11 @@
                   aria-label="Отметить пост как понравившийся"
                 ></button>
               </div>
+              <button
+                type="button"
+                class="button content__delete-button"
+                aria-label="Кнопка удаления поста"
+              ></button>
             </article>
           </li>
           <li>
@@ -178,6 +203,11 @@
                   aria-label="Отметить пост как понравившийся"
                 ></button>
               </div>
+              <button
+                type="button"
+                class="button content__delete-button"
+                aria-label="Кнопка удаления поста"
+              ></button>
             </article>
           </li>
         </ul>
@@ -186,8 +216,8 @@
     <footer class="footer">
       <p class="footer__text" lang="en">&copy; 2022 Mesto Russia</p>
     </footer>
-    <div class="popup">
-      <div class="popup__container">
+    <div class="popup popup_type_edit-profile">
+      <div class="popup__container" id="popup__container_type_edit-profile">
         <h2 class="popup__title">Редактировать профиль</h2>
         <form class="popup__form" name="editProfile">
           <input
@@ -204,17 +234,72 @@
             value="Профессия"
             placeholder="Ваша профессия"
           />
-          <button class="button popup__save-profile-button" type="submit">
+          <button
+            class="button popup__button popup__save-profile-button"
+            type="submit"
+          >
             Сохранить
           </button>
         </form>
         <button
           type="button"
-          class="button popup__close-button"
+          class="button popup__close-button popup__close-button_place_edit-profile"
           aria-label="Кнопка закрытия всплывающего окна"
         ></button>
       </div>
     </div>
+    <div class="popup popup_type_add-content">
+      <div class="popup__container" id="popup__contanter_type_add-content">
+        <h2 class="popup__title">Новое место</h2>
+        <form class="popup__form" name="addContent">
+          <input
+            class="popup__input popup__input_type_place"
+            type="text"
+            name="place"
+            value=""
+            placeholder="Название"
+          />
+          <input
+            class="popup__input popup__input_type_image-link"
+            type="text"
+            name="image-link"
+            value=""
+            placeholder="Ссылка на картинку"
+          />
+          <button
+            class="button popup__button popup__save-content-button"
+            type="submit"
+          >
+            Сохранить
+          </button>
+        </form>
+        <button
+          type="button"
+          class="button popup__close-button popup__close-button_place_add-content"
+          aria-label="Кнопка закрытия всплывающего окна"
+        ></button>
+      </div>
+    </div>
+    <template id="content__card-template">
+      <li>
+        <article class="content__card" aria-label="Пользоваельский пост">
+          <img src="" alt="" class="content__image" />
+          <div class="content__info">
+            <h2 class="content__title"></h2>
+            <button
+              type="button"
+              class="button content__like-button"
+              aria-label="Отметить пост как понравившийся"
+            ></button>
+          </div>
+          <button
+            type="button"
+            class="button content__delete-button"
+            aria-label="Кнопка удаления поста"
+          ></button>
+        </article>
+      </li>
+    </template>
     <script src="./scripts/index.js" defer></script>
   </body>
 </html>
