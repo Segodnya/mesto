@@ -1,4 +1,4 @@
-.popup__contanter_type_image {
+.popup__container_type_image {
   position: relative;
   padding-top: 0;
   display: flex;
@@ -11,7 +11,7 @@
 }
 
 @media screen and (min-width: 920px) {
-  .popup__contanter_type_image {
+  .popup__container_type_image {
     padding-top: 0;
     max-width: 75vw;
   }

@@ -8,7 +8,7 @@ const formElementEditProfile = document.querySelector(
   "#popup__container_type_edit-profile"
 );
 const formElementAddContent = document.querySelector(
-  "#popup__contanter_type_add-content"
+  "#popup__container_type_add-content"
 );
 const buttonEditProfile = document.querySelector(".profile__edit-button");
 const buttonAddContent = document.querySelector(".profile__add-button");
