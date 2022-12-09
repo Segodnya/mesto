@@ -35,9 +35,9 @@ function renderContentCard(srcValue, titleValue) {
   const contentCardElement = contentCardTemplate
     .querySelector(".content__card")
     .cloneNode(true);
-  contentCardElement.querySelector(".content__image").src = srcValue;
-  contentCardElement.querySelector(".content__image").alt =
-    "Фотография " + titleValue;
+  const contentCardImage = contentCardElement.querySelector(".content__image");
+  contentCardImage.src = srcValue;
+  contentCardImage.alt = "Фотография " + titleValue;
   contentCardElement.querySelector(".content__title").textContent = titleValue;
 
   contentCardElement
@@ -52,17 +52,15 @@ function renderContentCard(srcValue, titleValue) {
       contentCardElement.remove();
     });
 
-  contentCardElement
-    .querySelector(".content__image")
-    .addEventListener("click", function () {
-      openPopupImage(contentCardElement);
-    });
+  contentCardImage.addEventListener("click", function () {
+    openPopupImage(srcValue, titleValue);
+  });
 
   return contentCardElement;
 }
 
 function insertCard(contentCardElement) {
-  contentListContainer.insertAdjacentElement("afterbegin", contentCardElement);
+  contentListContainer.prepend(contentCardElement);
 }
 
 initialCards.forEach((element) => {
@@ -83,14 +81,11 @@ function closePopup(currentPopup) {
   currentPopup.classList.remove("popup_opened");
 }
 
-function openPopupImage(contentCardElement) {
-  popupImageElement.src =
-    contentCardElement.querySelector(".content__image").src;
-  popupImageElement.alt =
-    contentCardElement.querySelector(".content__image").alt;
-  popupImageCaption.textContent =
-    contentCardElement.querySelector(".content__title").textContent;
-  popupImage.classList.add("popup_opened");
+function openPopupImage(srcValue, titleValue) {
+  popupImageElement.src = srcValue;
+  popupImageElement.alt = "Фотография " + titleValue;
+  popupImageCaption.textContent = titleValue;
+  openPopup(popupImage);
 }
 
 function formEditProfileSubmitHandler(evt) {
