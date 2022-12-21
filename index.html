@@ -75,14 +75,22 @@
             name="name"
             value="Имя"
             placeholder="Ваше имя"
+            required
+            minlength="2"
+            maxlength="40"
           />
+          <span class="popup__error name-input-error"></span>
           <input
             class="popup__input popup__input_type_job"
             type="text"
             name="job"
             value="Профессия"
             placeholder="Ваша профессия"
+            required
+            minlength="2"
+            maxlength="200"
           />
+          <span class="popup__error job-input-error"></span>
           <button
             class="button popup__button popup__save-profile-button"
             type="submit"
@@ -107,14 +115,20 @@
             name="place"
             value=""
             placeholder="Название"
+            required
+            minlength="2"
+            maxlength="30"
           />
+          <span class="popup__error place-input-error"></span>
           <input
             class="popup__input popup__input_type_image-link"
-            type="text"
+            type="url"
             name="image-link"
             value=""
             placeholder="Ссылка на картинку"
+            required
           />
+          <span class="popup__error image-link-input-error"></span>
           <button
             class="button popup__button popup__save-content-button"
             type="submit"
@@ -135,7 +149,7 @@
         id="popup__container_type_image"
       >
         <img src="./images/img__dombay.png" alt="" class="popup__image" />
-        <h2 class="popup__caption">Карачаево-Черкессия</h2>
+        <h2 class="popup__caption"></h2>
         <button
           type="button"
           class="button popup__close-button popup__close-button_place_image"
@@ -169,6 +183,6 @@
     </template>
     <script src="./scripts/cards.js" defer></script>
     <script src="./scripts/index.js" defer></script>
-    <script src="./scripts/features.js" defer></script>
+    <script src="./scripts/validate.js" defer></script>
   </body>
 </html>
