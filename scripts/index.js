@@ -70,6 +70,7 @@ initialCards.forEach((element) => {
 
 function openPopup(currentPopup) {
   currentPopup.classList.add("popup_opened");
+  document.addEventListener("keydown", closePopupByEsc);
 }
 
 function renderEditProfile() {
@@ -79,6 +80,7 @@ function renderEditProfile() {
 
 function closePopup(currentPopup) {
   currentPopup.classList.remove("popup_opened");
+  document.removeEventListener("keydown", closePopupByEsc);
 }
 
 function openPopupImage(srcValue, titleValue) {
@@ -102,7 +104,7 @@ function formAddContentSubmitHandler(evt) {
   closePopup(popupAddContent);
 }
 
-document.addEventListener("keydown", (event) => {
+const closePopupByEsc = (event) => {
   if (event.key === "Escape") {
     const currentPopup = document.querySelector(".popup_opened");
     const isNotCombinedKey = !(event.ctrlKey || event.altKey || event.shiftKey);
@@ -110,7 +112,7 @@ document.addEventListener("keydown", (event) => {
       closePopup(currentPopup);
     }
   }
-});
+};
 
 document.addEventListener("click", function (event) {
   const currentPopup = document.querySelector(".popup_opened");
