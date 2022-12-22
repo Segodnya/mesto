@@ -1,7 +1,7 @@
 // включение валидации вызовом enableValidation
 // все настройки передаются при вызове
 
-const settings = {
+const validationConfig = {
   formSelector: ".popup__form",
   inputSelector: ".popup__input",
   submitButtonSelector: ".popup__button",
@@ -28,7 +28,7 @@ const showInputError = (formElement, inputElement, errorMessage, settings) => {
   errorElement.classList.add(settings.errorClass);
 };
 
-const checkInputValidity = (formElement, inputElement) => {
+const checkInputValidity = (formElement, inputElement, settings) => {
   if (!inputElement.validity.valid) {
     showInputError(
       formElement,
@@ -50,8 +50,10 @@ const hasInvalidInput = (inputList) => {
 const toggleButtonState = (inputList, buttonElement, settings) => {
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add(settings.inactiveButtonClass);
+    buttonElement.disabled = true;
   } else {
     buttonElement.classList.remove(settings.inactiveButtonClass);
+    buttonElement.disabled = false;
   }
 };
 
@@ -66,7 +68,7 @@ const setEventListeners = (formElement, settings) => {
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", function () {
-      checkInputValidity(formElement, inputElement);
+      checkInputValidity(formElement, inputElement, settings);
       toggleButtonState(inputList, buttonElement, settings);
     });
   });
@@ -82,4 +84,4 @@ const enableValidation = (settings) => {
   });
 };
 
-enableValidation(settings);
+enableValidation(validationConfig);

@@ -61,11 +61,6 @@ initialCards.forEach((element) => {
 
 function openPopup(currentPopup) {
   currentPopup.classList.add("popup_opened");
-  if (currentPopup.classList.contains("popup_type_add-content")) {
-    currentPopup
-      .querySelector(".button")
-      .classList.add("popup__button_disabled");
-  }
   document.addEventListener("keydown", closePopupByEsc);
 }
 
@@ -123,6 +118,10 @@ buttonAddContent.addEventListener(
   "click",
   function () {
     openPopup(popupAddContent);
+    popupAddContent
+      .querySelector(".button")
+      .classList.add("popup__button_disabled");
+    popupAddContent.querySelector(".button").disabled = true;
   },
   false
 );
