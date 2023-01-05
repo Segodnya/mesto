@@ -1,5 +1,3 @@
-import { initialCards } from "./cards.js";
-
 const placeInput = document.querySelector(".popup__input_type_place");
 const imageLinkInput = document.querySelector(".popup__input_type_image-link");
 const popupEditProfile = document.querySelector(".popup_type_edit-profile");
@@ -71,8 +69,7 @@ const closePopupByEsc = (event) => {
   }
 };
 
-import { Card } from "./Card.js";
-
+import { initialCards, Card } from "./Card.js";
 // Для каждой карточки создайте экземпляр класса Card.
 initialCards.forEach((item) => {
   // Создадим экземпляр карточки
@@ -81,6 +78,16 @@ initialCards.forEach((item) => {
   const cardElement = card.generateCard();
   // Добавляем в DOM
   document.querySelector(".content__list").prepend(cardElement);
+});
+
+import { FormValidator, validationConfig } from "./FormValidator.js";
+// Для каждой проверяемой формы создайте экземпляр класса FormValidator.
+const formList = Array.from(
+  document.querySelectorAll(validationConfig.formSelector)
+);
+formList.forEach((formElement) => {
+  const form = new FormValidator(validationConfig, formElement);
+  form.enableValidation();
 });
 
 buttonEditProfile.addEventListener(
@@ -104,7 +111,6 @@ buttonAddContent.addEventListener(
 );
 
 const popups = document.querySelectorAll(".popup");
-
 popups.forEach((popup) => {
   popup.addEventListener("mousedown", (evt) => {
     if (evt.target.classList.contains("popup_opened")) {
