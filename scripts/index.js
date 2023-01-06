@@ -1,4 +1,7 @@
 import { openPopup, closePopup } from "../utils/util.js";
+import { Card } from "./Card.js";
+import { initialCards, validationConfig } from "../utils/constants.js";
+import { FormValidator } from "./FormValidator.js";
 
 const placeInput = document.querySelector(".popup__input_type_place");
 const imageLinkInput = document.querySelector(".popup__input_type_image-link");
@@ -17,6 +20,10 @@ const jobInput = document.querySelector(".popup__input_type_job");
 const nameProfile = document.querySelector(".profile__name");
 const jobProfile = document.querySelector(".profile__job");
 const contentListNode = document.querySelector(".content__list");
+const formList = Array.from(
+  document.querySelectorAll(validationConfig.formSelector)
+);
+const popups = document.querySelectorAll(".popup");
 
 function renderEditProfile() {
   nameInput.value = nameProfile.textContent;
@@ -48,23 +55,25 @@ function handleAddContentFormSubmit(evt) {
   closePopup(popupAddContent);
 }
 
-import { Card } from "./Card.js";
-import { initialCards } from "../utils/constants.js";
 // Для каждой карточки создайте экземпляр класса Card.
 initialCards.forEach((item) => {
   // Добавляем в DOM
   contentListNode.prepend(createCard(item));
 });
 
-import { FormValidator } from "./FormValidator.js";
-import { validationConfig } from "../utils/constants.js";
 // Для каждой проверяемой формы создайте экземпляр класса FormValidator.
-const formList = Array.from(
-  document.querySelectorAll(validationConfig.formSelector)
-);
 formList.forEach((formElement) => {
-  const form = new FormValidator(validationConfig, formElement);
-  form.enableValidation();
+  if (formElement.name === "addContent") {
+    const validatorFormAddContent = new FormValidator(
+      validationConfig,
+      formElement
+    );
+    validatorFormAddContent.enableValidation();
+    validatorFormAddContent.disableSubmitButton();
+  } else {
+    const validator = new FormValidator(validationConfig, formElement);
+    validator.enableValidation();
+  }
 });
 
 buttonEditProfile.addEventListener(
@@ -75,21 +84,15 @@ buttonEditProfile.addEventListener(
   },
   false
 );
+
 buttonAddContent.addEventListener(
   "click",
-  function () {
+  () => {
     openPopup(popupAddContent);
-    const form = new FormValidator(
-      validationConfig,
-      popupAddContent.querySelector(".popup__form")
-    );
-    form.enableValidation();
-    form.disableSubmitButton();
   },
   false
 );
 
-const popups = document.querySelectorAll(".popup");
 popups.forEach((popup) => {
   popup.addEventListener("mousedown", (evt) => {
     if (evt.target.classList.contains("popup_opened")) {
