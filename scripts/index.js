@@ -20,9 +20,10 @@ const jobInput = document.querySelector(".popup__input_type_job");
 const nameProfile = document.querySelector(".profile__name");
 const jobProfile = document.querySelector(".profile__job");
 const contentListNode = document.querySelector(".content__list");
-const formList = Array.from(
-  document.querySelectorAll(validationConfig.formSelector)
+const formEditProfile = document.querySelector(
+  ".popup__form_type_edit-profile"
 );
+const formAddContent = document.querySelector(".popup__form_type_add-content");
 const popups = document.querySelectorAll(".popup");
 
 function renderEditProfile() {
@@ -62,19 +63,16 @@ initialCards.forEach((item) => {
 });
 
 // Для каждой проверяемой формы создайте экземпляр класса FormValidator.
-formList.forEach((formElement) => {
-  if (formElement.name === "addContent") {
-    const validatorFormAddContent = new FormValidator(
-      validationConfig,
-      formElement
-    );
-    validatorFormAddContent.enableValidation();
-    validatorFormAddContent.disableSubmitButton();
-  } else {
-    const validator = new FormValidator(validationConfig, formElement);
-    validator.enableValidation();
-  }
-});
+const validatorFormEditProfile = new FormValidator(
+  validationConfig,
+  formEditProfile
+);
+validatorFormEditProfile.enableValidation();
+const validatorFormAddContent = new FormValidator(
+  validationConfig,
+  formAddContent
+);
+validatorFormAddContent.enableValidation();
 
 buttonEditProfile.addEventListener(
   "click",
@@ -88,6 +86,7 @@ buttonEditProfile.addEventListener(
 buttonAddContent.addEventListener(
   "click",
   () => {
+    validatorFormAddContent.disableSubmitButton();
     openPopup(popupAddContent);
   },
   false

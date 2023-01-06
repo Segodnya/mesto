@@ -77,19 +77,17 @@ export class FormValidator {
     });
   }
 
+  disableSubmitButton(_buttonElement, _formElement) {
+    this._buttonElement.classList.add("popup__button_disabled");
+    this._buttonElement.disabled = true;
+  }
+
   // имеет публичный метод enableValidation,
   // который включает валидацию формы.
   enableValidation(_config, _formElement) {
     this._setEventListeners(_formElement, _config);
-    this._formElement.addEventListener("submit", function (e) {
+    this._formElement.addEventListener("submit", (e) => {
       e.preventDefault();
     });
-  }
-
-  disableSubmitButton(_buttonElement, _formElement) {
-    if (this._formElement.name === "addContent") {
-      this._buttonElement.classList.add("popup__button_disabled");
-      this._buttonElement.disabled = true;
-    }
   }
 }
