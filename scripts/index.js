@@ -56,13 +56,11 @@ function handleAddContentFormSubmit(evt) {
   closePopup(popupAddContent);
 }
 
-// Для каждой карточки создайте экземпляр класса Card.
 initialCards.forEach((item) => {
   // Добавляем в DOM
   contentListNode.prepend(createCard(item));
 });
 
-// Для каждой проверяемой формы создайте экземпляр класса FormValidator.
 const validatorFormEditProfile = new FormValidator(
   validationConfig,
   formEditProfile

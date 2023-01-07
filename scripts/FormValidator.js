@@ -1,10 +1,4 @@
-// Создайте класс FormValidator,
-// который настраивает валидацию полей формы:
-
 export class FormValidator {
-  // принимает в конструктор объект настроек
-  // с селекторами и классами формы;
-  // принимает вторым параметром элемент той формы, которая валидируется;
   constructor(config, formElement) {
     this._config = config;
     this._formElement = formElement;
@@ -16,7 +10,6 @@ export class FormValidator {
     );
   }
 
-  // имеет приватные методы, которые обрабатывают форму:
   _hideInputError(_formElement, inputElement, _config) {
     const errorElement = this._formElement.querySelector(
       `.${inputElement.name}-input-error`
@@ -35,7 +28,6 @@ export class FormValidator {
     errorElement.classList.add(this._config.errorClass);
   }
 
-  // проверяют валидность поля,
   _checkInputValidity(_formElement, inputElement, _config) {
     if (!inputElement.validity.valid) {
       this._showInputError(
@@ -55,7 +47,6 @@ export class FormValidator {
     });
   }
 
-  // изменяют состояние кнопки сабмита,
   _toggleButtonState(_inputList, _buttonElement, _config) {
     if (this._hasInvalidInput(_inputList)) {
       this._buttonElement.classList.add(this._config.inactiveButtonClass);
@@ -66,7 +57,6 @@ export class FormValidator {
     }
   }
 
-  // устанавливают все обработчики;
   _setEventListeners(_formElement, _config) {
     this._toggleButtonState(this._inputList, this._buttonElement, _config);
     this._inputList.forEach((inputElement) => {
@@ -82,8 +72,6 @@ export class FormValidator {
     this._buttonElement.disabled = true;
   }
 
-  // имеет публичный метод enableValidation,
-  // который включает валидацию формы.
   enableValidation(_config, _formElement) {
     this._setEventListeners(_formElement, _config);
     this._formElement.addEventListener("submit", (e) => {
