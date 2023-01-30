@@ -1,9 +1,9 @@
 import { openPopupImage } from "../utils/util.js";
 
 export class Card {
-  constructor(data, templateSelector) {
-    this._title = data.name;
-    this._image = data.link;
+  constructor({ name, link }, templateSelector) {
+    this._title = name;
+    this._image = link;
     this._templateSelector = templateSelector;
   }
 
@@ -40,6 +40,7 @@ export class Card {
   }
   _handleDeleteButton() {
     this._element.remove();
+    this._element = null;
   }
   _handleCardPopup() {
     openPopupImage(this._image, this._title);
