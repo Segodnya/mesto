@@ -12,7 +12,7 @@ Mesto: интерактивный сервис, куда можно добавл
 
 **Github Pages**
 
-Проект опубликован на [Github Pages](https://segodnya.github.io/mesto/)
+Проект опубликован на [Github Pages](https://segodnya.github.io/mesto/), опубликование из ветки classic.
 
 **Figma-макет**
 
