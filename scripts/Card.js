@@ -1,20 +1,30 @@
-import { openPopupImage } from "../utils/util.js";
-
+// класс Card создаёт карточку
+// с текстом и ссылкой на изображение
 export class Card {
-  constructor({ name, link }, templateSelector) {
+  // принимает в конструктор её данные
+  // и селектор её template-элемента;
+  constructor({ name, link }, templateSelector, handleCardClick) {
     this._title = name;
     this._image = link;
     this._templateSelector = templateSelector;
+    // класс Card cвязан с попапом.
+    // Card принимает в конструктор функцию handleCardClick.
+    // Эта функция открывает попап с картинкой при клике на карточку.
+    this._handleCardClick = handleCardClick;
   }
 
+  // содержит приватные методы, которые работают с разметкой,
   _getTemplate() {
+    // забираем разметку из HTML и клонируем элемент
     const cardElement = document
       .querySelector(this._templateSelector)
       .content.querySelector(".content__card")
       .cloneNode(true);
+    // вернём DOM-элемент карточки
     return cardElement;
   }
 
+  // устанавливают слушателей событий;
   _setEventListeners() {
     this._element
       .querySelector(".content__like-button")
@@ -26,13 +36,12 @@ export class Card {
       .addEventListener("click", () => {
         this._handleDeleteButton();
       });
-    this._element
-      .querySelector(".content__image")
-      .addEventListener("click", () => {
-        this._handleCardPopup();
-      });
+    this._imgElement.addEventListener("click", () => {
+      this._handleCardClick(this._title, this._image);
+    });
   }
 
+  // содержит приватные методы для каждого обработчика;
   _handleLikeButton() {
     this._element
       .querySelector(".content__like-button")
@@ -42,18 +51,23 @@ export class Card {
     this._element.remove();
     this._element = null;
   }
-  _handleCardPopup() {
-    openPopupImage(this._image, this._title);
-  }
 
+  // содержит один публичный метод, который возвращает
+  // полностью работоспособный и наполненный данными
+  // элемент карточки.
   generateCard() {
+    // Запишем разметку в приватное поле _element.
+    // Так у других элементов появится доступ к ней.
     this._element = this._getTemplate();
-    this._setEventListeners();
-    this._element.querySelector(".content__image").src = this._image;
-    this._element.querySelector(".content__image").alt =
-      "Фотография " + this._title;
+    // Добавим данные
+    this._imgElement = this._element.querySelector(".content__image");
+    this._imgElement.src = this._image;
+    this._imgElement.alt = "Фотография " + this._title;
     this._element.querySelector(".content__title").textContent = this._title;
+    // Установим обработчики
+    this._setEventListeners();
 
+    // Вернём элемент наружу
     return this._element;
   }
 }

@@ -1,18 +1,15 @@
-import { openPopup, closePopup } from "../utils/util.js";
+// import { openPopup, closePopup } from "../utils/util.js";
 import { Card } from "./Card.js";
-import { initialCards, validationConfig } from "../utils/constants.js";
 import { FormValidator } from "./FormValidator.js";
+import { Section } from "./Section.js";
+import { PopupWithImage } from ".//PopupWithImage.js";
+import { PopupWithForm } from ".//PopupWithForm.js";
+import { UserInfo } from "./UserInfo.js";
+import { initialCards, validationConfig } from "../utils/constants.js";
 
-const placeInput = document.querySelector(".popup__input_type_place");
-const imageLinkInput = document.querySelector(".popup__input_type_image-link");
 const popupEditProfile = document.querySelector(".popup_type_edit-profile");
 const popupAddContent = document.querySelector(".popup_type_add-content");
-const formElementEditProfile = document.querySelector(
-  "#popup__container_type_edit-profile"
-);
-const formElementAddContent = document.querySelector(
-  "#popup__container_type_add-content"
-);
+const popupShowImage = document.querySelector(".popup_type_image");
 const buttonEditProfile = document.querySelector(".profile__edit-button");
 const buttonAddContent = document.querySelector(".profile__add-button");
 const nameInput = document.querySelector(".popup__input_type_name");
@@ -24,82 +21,100 @@ const formEditProfile = document.querySelector(
   ".popup__form_type_edit-profile"
 );
 const formAddContent = document.querySelector(".popup__form_type_add-content");
-const popups = document.querySelectorAll(".popup");
 
+// Добавление карточек из массива
+const cardList = new Section(
+  {
+    items: initialCards,
+    renderer: (item) => {
+      const card = createCard(item);
+      // Добавляем в DOM
+      cardList.addItem(card);
+    },
+  },
+  contentListNode
+);
+cardList.renderItems();
+
+// Добавление карточек
+// Для каждой карточки создайте экземпляр класса Card.
+function createCard(data) {
+  // Создадим экземпляр карточки
+  const card = new Card(data, "#content__card-template", showPopupWithImage);
+  // Создаём карточку и возвращаем наружу
+  const cardElement = card.generateCard();
+  return cardElement;
+}
+
+//Открытие увеличенной картинки
+function showPopupWithImage(name, link) {
+  popupImage.open(name, link);
+}
+
+// Форма редактирования профиля
 function renderEditProfile() {
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
 }
-
-function handleProfileFormSubmit(evt) {
-  evt.preventDefault();
-  nameProfile.textContent = nameInput.value;
-  jobProfile.textContent = jobInput.value;
-  closePopup(popupEditProfile);
+function handleSubmitFormEditProfile(data) {
+  userInfo.setUserInfo(data);
 }
 
-const createCard = (item) => {
-  // Создадим экземпляр карточки
-  const card = new Card(item, "#content__card-template");
-  // Создаём карточку и возвращаем наружу
-  const cardElement = card.generateCard();
-  return cardElement;
-};
-
-function handleAddContentFormSubmit(evt) {
-  evt.preventDefault();
-  const item = {};
-  item.link = imageLinkInput.value;
-  item.name = placeInput.value;
-  contentListNode.prepend(createCard(item));
-  evt.target.reset();
-  closePopup(popupAddContent);
+// Форма добавления карточек
+function handleSubmitFormAddContent(obj) {
+  const card = createCard(obj);
+  cardList.addItem(card);
+  popupAdd.close();
 }
 
-initialCards.forEach((item) => {
-  // Добавляем в DOM
-  contentListNode.prepend(createCard(item));
-});
+// Попап редактирования профиля
+buttonEditProfile.addEventListener(
+  "click",
+  () => {
+    popupEdit.open();
+    renderEditProfile();
+    validatorFormEditProfile.hideInputErros();
+  },
+  false
+);
 
+// Попап добавления карточек
+buttonAddContent.addEventListener(
+  "click",
+  () => {
+    popupAdd.open();
+    validatorFormAddContent.disableSubmitButton();
+    validatorFormAddContent.hideInputErros();
+  },
+  false
+);
+
+// Для каждой проверяемой формы создайте экземпляр класса FormValidator.
 const validatorFormEditProfile = new FormValidator(
   validationConfig,
   formEditProfile
 );
-validatorFormEditProfile.enableValidation();
 const validatorFormAddContent = new FormValidator(
   validationConfig,
   formAddContent
 );
+
+validatorFormEditProfile.enableValidation();
 validatorFormAddContent.enableValidation();
 
-buttonEditProfile.addEventListener(
-  "click",
-  function () {
-    openPopup(popupEditProfile);
-    renderEditProfile();
-  },
-  false
+// Для каждого попапа создавайте свой экземпляр класса PopupWithForm
+const popupImage = new PopupWithImage(popupShowImage);
+const popupAdd = new PopupWithForm(popupAddContent, handleSubmitFormAddContent);
+const popupEdit = new PopupWithForm(
+  popupEditProfile,
+  handleSubmitFormEditProfile
 );
 
-buttonAddContent.addEventListener(
-  "click",
-  () => {
-    validatorFormAddContent.disableSubmitButton();
-    openPopup(popupAddContent);
-  },
-  false
-);
+popupImage.setEventListeners();
+popupAdd.setEventListeners();
+popupEdit.setEventListeners();
 
-popups.forEach((popup) => {
-  popup.addEventListener("mousedown", (evt) => {
-    if (evt.target.classList.contains("popup_opened")) {
-      closePopup(popup);
-    }
-    if (evt.target.classList.contains("popup__close-button")) {
-      closePopup(popup);
-    }
-  });
+const userInfo = new UserInfo({
+  name: nameProfile,
+  job: jobProfile,
 });
-
-formElementEditProfile.addEventListener("submit", handleProfileFormSubmit);
-formElementAddContent.addEventListener("submit", handleAddContentFormSubmit);
