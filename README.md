@@ -8,6 +8,7 @@ Mesto: интерактивный сервис, куда можно добавл
 - Figma-макет
 - Технологии
 - Функциональность
+- Настройка сборки (Webpack)
 - TODO
 
 **Github Pages**
@@ -38,6 +39,86 @@ Mesto: интерактивный сервис, куда можно добавл
 - Создан класс Card, который создаёт карточку с текстом и ссылкой на изображение;
 - Создать класс FormValidator, который настраивает валидацию полей формы.
 - В .gitignore добавлены папки node_modules и dist;
+- Изменена файловая структура проекта в соответствии с требования сборки Webpack-ом;
+
+**Настройка сборки (Webpack)**
+
+1. Создать packaje.json (после этого - дополнить свойство author):
+
+- npm init -y
+
+2. Обновить NPM до последней версии:
+
+- sudo npm upgrade -g npm
+
+3. Переключение между репозиториями:
+
+- npm set registry https://npm.prakticum-team.ru
+- npm set registry https://registry.npmjs.org/
+
+4. Установить Webpack:
+
+- npm i webpack --save-dev
+- npm i webpack-cli --save-dev
+
+5. Установить локальный сервер:
+
+- npm i webpack-dev-server --save-dev
+
+6. Новый синтаксис при сборке превращают в старый (транспиляция):
+
+- npm i @babel/core --save-dev
+- npm i @babel/preset-env --save-dev
+
+7. Иногда «переделка» синтаксиса не помогает. Это можно обойти — загрузить недостающую функциональность в браузер пользователя вместе с нашим проектом. Такие самодельные аналоги новой функциональности называются полифилы.
+
+- npm i core-js --save
+
+8. Установить пакет, который позволяет подключить Babel к Webpack:
+
+- npm i babel-loader --save-dev
+
+9. Подключение HTML:
+
+- npm i html-webpack-plugin --save-dev
+
+10. Нам нужен плагин, который будет каждый раз при сборке проекта удалять содержимое папки dist:
+
+- npm i clean-webpack-plugin --save-dev
+
+11. Работа с изображениями:
+    11.1. JS:
+
+- import jordanImage from './images/jordan.jpg';
+- const jordanImage = new URL('./images/jordan.jpg', import.meta.url);
+
+  11.2. HTML:
+
+- <img src="<%=require('./images/logo.png')%>" alt="Логотип">
+
+  11.3. CSS:
+
+- можно оставить относительные пути.
+
+12. Обработка CSS:
+
+- npm i css-loader --save-dev
+- npm i mini-css-extract-plugin --save-dev
+
+13. Минификация CSS и добавление префиксов:
+
+Первый пакет postcss-loader нужен, чтобы подключить PostCSS к «Вебпаку». Плагин autoprefixer научит PostCSS добавлять вендорные префиксы, а cssnano займётся минификацией css-кода.
+
+- npm i postcss-loader --save-dev
+- npm i autoprefixer --save-dev
+- npm i cssnano --save-dev
+
+Собрать проект одной из команд:
+
+- npm run build
+- npm run dev
+
+Остановка работы локального сервера - Ctrl + C в терминале.
 
 **TODO**
 

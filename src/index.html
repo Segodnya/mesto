@@ -22,13 +22,14 @@
       href="./images/favicon/favicon-16x16.png"
     />
     <link rel="manifest" href="./images/favicon/site.webmanifest" />
-    <link rel="stylesheet" href="./pages/index.css" />
-    <title lang="en">mesto: share and like</title>
+    <!-- уберите ссылку на файл стилей перед сборкой Вебпаком -->
+    <!-- <link rel="stylesheet" href="./pages/index.css" /> -->
+    <title lang="ru">mesto: да, то самое</title>
   </head>
   <body class="page">
     <header class="header">
       <img
-        src="./images/logo.svg"
+        src="<%=require('./images/logo.svg')%>"
         alt="Логотип Место Россия"
         class="header__logo"
       />
@@ -36,7 +37,7 @@
     <main>
       <section class="profile">
         <img
-          src="./images/profile__avatar.png"
+          src="<%=require('./images/profile__avatar.png')%>"
           alt="Аватар пользователя"
           class="profile__avatar"
         />
@@ -156,7 +157,11 @@
         class="popup__container popup__container_type_image"
         id="popup__container_type_image"
       >
-        <img src="./images/img__dombay.png" alt="" class="popup__image" />
+        <img
+          src="<%=require('./images/img__dombay.png')%>"
+          alt=""
+          class="popup__image"
+        />
         <h2 class="popup__caption"></h2>
         <button
           type="button"
@@ -169,7 +174,7 @@
       <li>
         <article class="content__card" aria-label="Пользоваельский пост">
           <img
-            src="./images/img__dombay.png"
+            src="<%=require('./images/img__dombay.png')%>"
             alt="Изображение, загруженное пользователем"
             class="content__image"
           />
@@ -189,6 +194,7 @@
         </article>
       </li>
     </template>
-    <script type="module" src="./scripts/index.js"></script>
+    <!-- Не используется при сборке Вебпаком -->
+    <!-- <script type="module" src="./scripts/index.js"></script> -->
   </body>
 </html>

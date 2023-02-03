@@ -1,26 +1,28 @@
-// import { openPopup, closePopup } from "../utils/util.js";
-import { Card } from "./Card.js";
-import { FormValidator } from "./FormValidator.js";
-import { Section } from "./Section.js";
-import { PopupWithImage } from ".//PopupWithImage.js";
-import { PopupWithForm } from ".//PopupWithForm.js";
-import { UserInfo } from "./UserInfo.js";
-import { initialCards, validationConfig } from "../utils/constants.js";
+// добавьте импорт главного файла стилей
+import "./index.css";
 
-const popupEditProfile = document.querySelector(".popup_type_edit-profile");
-const popupAddContent = document.querySelector(".popup_type_add-content");
-const popupShowImage = document.querySelector(".popup_type_image");
-const buttonEditProfile = document.querySelector(".profile__edit-button");
-const buttonAddContent = document.querySelector(".profile__add-button");
-const nameInput = document.querySelector(".popup__input_type_name");
-const jobInput = document.querySelector(".popup__input_type_job");
-const nameProfile = document.querySelector(".profile__name");
-const jobProfile = document.querySelector(".profile__job");
-const contentListNode = document.querySelector(".content__list");
-const formEditProfile = document.querySelector(
-  ".popup__form_type_edit-profile"
-);
-const formAddContent = document.querySelector(".popup__form_type_add-content");
+import { Card } from "../components/Card.js";
+import { FormValidator } from "../components/FormValidator.js";
+import { Section } from "../components/Section.js";
+import { PopupWithImage } from "../components/PopupWithImage.js";
+import { PopupWithForm } from "../components/PopupWithForm.js";
+import { UserInfo } from "../components/UserInfo.js";
+import {
+  popupEditProfile,
+  popupAddContent,
+  popupShowImage,
+  buttonEditProfile,
+  buttonAddContent,
+  nameInput,
+  jobInput,
+  nameProfile,
+  jobProfile,
+  contentListNode,
+  formEditProfile,
+  formAddContent,
+  initialCards,
+  validationConfig,
+} from "../utils/constants.js";
 
 // Добавление карточек из массива
 const cardList = new Section(
