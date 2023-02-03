@@ -94,7 +94,7 @@ Mesto: интерактивный сервис, куда можно добавл
 
   11.2. HTML:
 
-- <img src="<%=require('./images/logo.png')%>" alt="Логотип">
+- src="<%=require('./images/logo.png')%>"
 
   11.3. CSS:
 
