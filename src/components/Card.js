@@ -26,16 +26,12 @@ export class Card {
 
   // устанавливают слушателей событий;
   _setEventListeners() {
-    this._element
-      .querySelector(".content__like-button")
-      .addEventListener("click", () => {
-        this._handleLikeButton();
-      });
-    this._element
-      .querySelector(".content__delete-button")
-      .addEventListener("click", () => {
-        this._handleDeleteButton();
-      });
+    this._likeBtn.addEventListener("click", () => {
+      this._handleLikeButton();
+    });
+    this._deleteBtn.addEventListener("click", () => {
+      this._handleDeleteButton();
+    });
     this._imgElement.addEventListener("click", () => {
       this._handleCardClick(this._title, this._image);
     });
@@ -43,9 +39,7 @@ export class Card {
 
   // содержит приватные методы для каждого обработчика;
   _handleLikeButton() {
-    this._element
-      .querySelector(".content__like-button")
-      .classList.toggle("content__like-button_active");
+    this._likeBtn.classList.toggle("content__like-button_active");
   }
   _handleDeleteButton() {
     this._element.remove();
@@ -59,6 +53,8 @@ export class Card {
     // Запишем разметку в приватное поле _element.
     // Так у других элементов появится доступ к ней.
     this._element = this._getTemplate();
+    this._likeBtn = this._element.querySelector(".content__like-button");
+    this._deleteBtn = this._element.querySelector(".content__delete-button");
     // Добавим данные
     this._imgElement = this._element.querySelector(".content__image");
     this._imgElement.src = this._image;

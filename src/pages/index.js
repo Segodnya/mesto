@@ -55,8 +55,9 @@ function showPopupWithImage(name, link) {
 
 // Форма редактирования профиля
 function renderEditProfile() {
-  nameInput.value = nameProfile.textContent;
-  jobInput.value = jobProfile.textContent;
+  const infoObject = userInfo.getUserInfo();
+  nameInput.value = infoObject.name;
+  jobInput.value = infoObject.job;
 }
 function handleSubmitFormEditProfile(data) {
   userInfo.setUserInfo(data);
