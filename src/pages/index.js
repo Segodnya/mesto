@@ -13,8 +13,6 @@ import {
   popupShowImage,
   buttonEditProfile,
   buttonAddContent,
-  nameInput,
-  jobInput,
   nameProfile,
   jobProfile,
   contentListNode,

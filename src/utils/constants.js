@@ -9,8 +9,6 @@ export const buttonEditProfile = document.querySelector(
   ".profile__edit-button"
 );
 export const buttonAddContent = document.querySelector(".profile__add-button");
-export const nameInput = document.querySelector(".popup__input_type_name");
-export const jobInput = document.querySelector(".popup__input_type_job");
 export const nameProfile = document.querySelector(".profile__name");
 export const jobProfile = document.querySelector(".profile__job");
 export const contentListNode = document.querySelector(".content__list");
