@@ -9,6 +9,7 @@ Mesto: интерактивный сервис, куда можно добавл
 - Технологии
 - Функциональность
 - Настройка сборки (Webpack)
+- Настройка деплоя на GH Pages
 - TODO
 
 **Github Pages**
@@ -125,6 +126,27 @@ Mesto: интерактивный сервис, куда можно добавл
 - npm run dev
 
 Остановка работы локального сервера - Ctrl + C в терминале.
+
+**Настройка деплоя на GH Pages**
+
+1. Установить пакет gh-pages
+
+- npm install gh-pages --save-dev
+
+2. Добавьте в package.json новый скрипт — deploy. Этот скрипт должен вызывать пакет gh-pages и передавать ему папку, в которой находится собранный проект. В нашем случае это папка dist. Чтобы не делать сборку каждый раз вручную, можно сказать npm, чтобы перед каждым вызовом скрипта deploy вызывался build.
+
+scripts: {
+"predeploy": "npm run build",
+"deploy": "gh-pages -d dist"
+}
+
+4. Запуск
+
+- npm run deploy
+
+5. При возникновении ошибки Couldn't find remote ref refs/heads/gh-pages
+
+- npx gh-pages-clean
 
 **TODO**
 
