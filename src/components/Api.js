@@ -55,12 +55,12 @@ export class Api {
   }
 
   // Обновление аватара пользователя:
-  async updateUserAvatar(avatarUrl) {
+  async updateUserAvatar(data) {
     const res = await fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        avatar: avatarUrl,
+        avatar: data.avatar,
       }),
     });
     return this._handleResponse(res);

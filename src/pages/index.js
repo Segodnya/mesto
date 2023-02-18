@@ -58,6 +58,18 @@ function handleSubmitFormEditProfile(data) {
     .catch((err) => console.log(err));
 }
 
+// Форма обновления аватара
+function handleSubmitFormUpdateAvatar(data) {
+  api
+    .updateUserAvatar(data)
+    .then((userData) => {
+      currentUser.setUserInfo(userData);
+      avatarProfile.src = userData.avatar;
+      popupAvatar.close();
+    })
+    .catch((err) => console.log(err));
+}
+
 // Форма добавления карточек
 function handleSubmitFormAddContent(data) {
   api
@@ -127,7 +139,7 @@ const popupEdit = new PopupWithForm(
 );
 const popupAvatar = new PopupWithForm(
   popupUpdateAvatar,
-  handleSubmitFormEditProfile
+  handleSubmitFormUpdateAvatar
 );
 
 popupImage.setEventListeners();
@@ -138,6 +150,7 @@ popupAvatar.setEventListeners();
 const currentUser = new UserInfo({
   name: nameProfile,
   about: aboutProfile,
+  avatar: avatarProfile,
 });
 
 const api = new Api({
