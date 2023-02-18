@@ -40,11 +40,14 @@
     </header>
     <main>
       <section class="profile">
-        <img
-          src="<%=require('./images/profile__avatar.png')%>"
-          alt="Аватар пользователя"
-          class="profile__avatar"
-        />
+        <div class="profile__avatar-wrapper">
+          <button class="profile__avatar-button"></button>
+          <img
+            src="<%=require('./images/profile__avatar.png')%>"
+            alt="Аватар пользователя"
+            class="profile__avatar"
+          />
+        </div>
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
           <button
@@ -110,6 +113,37 @@
         <button
           type="button"
           class="button popup__close-button popup__close-button_place_edit-profile"
+          aria-label="Кнопка закрытия всплывающего окна"
+        ></button>
+      </div>
+    </div>
+    <div class="popup popup_type_update-avatar">
+      <div class="popup__container" id="popup__container_type_update-avatar">
+        <h2 class="popup__title">Обновить аватар</h2>
+        <form
+          class="popup__form popup__form_type_update-avatar"
+          name="updateAvatar"
+          novalidate
+        >
+          <input
+            class="popup__input popup__input_type_link-avatar"
+            type="url"
+            name="link-avatar"
+            value=""
+            placeholder="Ссылка на аватар"
+            required
+          />
+          <span class="popup__error link-input-error"></span>
+          <button
+            class="button popup__button popup__update-avatar-button"
+            type="submit"
+          >
+            Сохранить
+          </button>
+        </form>
+        <button
+          type="button"
+          class="button popup__close-button popup__close-button_place_update-avatar"
           aria-label="Кнопка закрытия всплывающего окна"
         ></button>
       </div>

@@ -53,4 +53,16 @@ export class Api {
     });
     return this._handleResponse(res);
   }
+
+  // Обновление аватара пользователя:
+  async updateUserAvatar(avatarUrl) {
+    const res = await fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: avatarUrl,
+      }),
+    });
+    return this._handleResponse(res);
+  }
 }

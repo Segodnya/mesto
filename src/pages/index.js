@@ -12,13 +12,17 @@ import {
   popupEditProfile,
   popupAddContent,
   popupShowImage,
+  popupUpdateAvatar,
   buttonEditProfile,
   buttonAddContent,
+  buttonUpdateAvatar,
   nameProfile,
   aboutProfile,
+  avatarProfile,
   contentListNode,
   formEditProfile,
   formAddContent,
+  formUpdateAvatar,
   validationConfig,
 } from "../utils/constants.js";
 let userId;
@@ -75,6 +79,15 @@ buttonEditProfile.addEventListener(
   },
   false
 );
+buttonUpdateAvatar.addEventListener(
+  "click",
+  () => {
+    popupAvatar.open();
+    popupAvatar.setInputsValues(currentUser.getUserInfo());
+    validatorFormEditProfile.hideInputErros();
+  },
+  false
+);
 
 // Попап добавления карточек
 buttonAddContent.addEventListener(
@@ -96,9 +109,14 @@ const validatorFormAddContent = new FormValidator(
   validationConfig,
   formAddContent
 );
+const validatorFormUpdateAvatar = new FormValidator(
+  validationConfig,
+  formUpdateAvatar
+);
 
 validatorFormEditProfile.enableValidation();
 validatorFormAddContent.enableValidation();
+validatorFormUpdateAvatar.enableValidation();
 
 // Для каждого попапа создавайте свой экземпляр класса PopupWithForm
 const popupImage = new PopupWithImage(popupShowImage);
@@ -107,10 +125,15 @@ const popupEdit = new PopupWithForm(
   popupEditProfile,
   handleSubmitFormEditProfile
 );
+const popupAvatar = new PopupWithForm(
+  popupUpdateAvatar,
+  handleSubmitFormEditProfile
+);
 
 popupImage.setEventListeners();
 popupAdd.setEventListeners();
 popupEdit.setEventListeners();
+popupAvatar.setEventListeners();
 
 const currentUser = new UserInfo({
   name: nameProfile,
@@ -143,6 +166,7 @@ Promise.all([api.getCurrentUserInfo(), api.getInitialCards()])
   .then(([userData, cards]) => {
     currentUser.setUserInfo(userData);
     userId = userData._id;
+    avatarProfile.src = userData.avatar;
     cardList.renderItems(cards.reverse());
   })
   .catch((e) => console.log(e));
