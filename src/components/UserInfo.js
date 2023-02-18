@@ -3,9 +3,9 @@
 export class UserInfo {
   // Принимает в конструктор объект с селекторами двух элементов:
   // элемента имени пользователя и элемента информации о себе;
-  constructor({ name, job }) {
+  constructor({ name, about }) {
     this._name = name;
-    this._job = job;
+    this._about = about;
   }
 
   // публичный метод getUserInfo возвращает объект
@@ -14,14 +14,14 @@ export class UserInfo {
   getUserInfo() {
     return {
       name: this._name.textContent,
-      job: this._job.textContent,
+      about: this._about.textContent,
     };
   }
 
   // публичный метод setUserInfo принимает новые данные пользователя
   // и добавляет их на страницу;
   setUserInfo(data) {
-    this._name.textContent = data.name;
-    this._job.textContent = data.job;
+    if (data.name) this._name.textContent = data.name;
+    if (data.about) this._about.textContent = data.about;
   }
 }

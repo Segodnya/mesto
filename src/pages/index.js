@@ -1,6 +1,7 @@
 // добавьте импорт главного файла стилей
 import "./index.css";
 
+import { Api } from "../components/Api.js";
 import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
 import { Section } from "../components/Section.js";
@@ -14,27 +15,13 @@ import {
   buttonEditProfile,
   buttonAddContent,
   nameProfile,
-  jobProfile,
+  aboutProfile,
   contentListNode,
   formEditProfile,
   formAddContent,
-  initialCards,
   validationConfig,
 } from "../utils/constants.js";
-
-// Добавление карточек из массива
-const cardList = new Section(
-  {
-    items: initialCards,
-    renderer: (item) => {
-      const card = createCard(item);
-      // Добавляем в DOM
-      cardList.addItem(card);
-    },
-  },
-  contentListNode
-);
-cardList.renderItems();
+let userId;
 
 // Добавление карточек
 // Для каждой карточки создайте экземпляр класса Card.
@@ -53,14 +40,24 @@ function showPopupWithImage(name, link) {
 
 // Форма редактирования профиля
 function handleSubmitFormEditProfile(data) {
-  userInfo.setUserInfo(data);
+  api
+    .editUserInfo(data)
+    .then((userData) => {
+      currentUser.setUserInfo(userData);
+      popupEdit.close();
+    })
+    .catch((err) => console.log(err));
 }
 
 // Форма добавления карточек
-function handleSubmitFormAddContent(obj) {
-  const card = createCard(obj);
-  cardList.addItem(card);
-  popupAdd.close();
+function handleSubmitFormAddContent(data) {
+  api
+    .addCard(data)
+    .then((newCard) => {
+      cardList.addItem(createCard(newCard));
+      popupAdd.close();
+    })
+    .catch((err) => console.log(err));
 }
 
 // Попап редактирования профиля
@@ -68,7 +65,7 @@ buttonEditProfile.addEventListener(
   "click",
   () => {
     popupEdit.open();
-    popupEdit.setInputsValues(userInfo.getUserInfo());
+    popupEdit.setInputsValues(currentUser.getUserInfo());
     validatorFormEditProfile.hideInputErros();
   },
   false
@@ -110,7 +107,37 @@ popupImage.setEventListeners();
 popupAdd.setEventListeners();
 popupEdit.setEventListeners();
 
-const userInfo = new UserInfo({
+const currentUser = new UserInfo({
   name: nameProfile,
-  job: jobProfile,
+  about: aboutProfile,
 });
+
+const api = new Api({
+  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-60",
+  headers: {
+    authorization: "38c8a8c8-7306-4445-b79c-2958495ffcfd",
+    "Content-Type": "application/json",
+  },
+});
+
+// Добавление карточек из массива с сервера
+const cardList = new Section(
+  {
+    renderer: (data) => {
+      const card = createCard(data);
+      // Добавляем в DOM
+      cardList.addItem(card);
+    },
+  },
+  contentListNode
+);
+
+// Получаем карточки с сервера после того,
+// как получим данные пользователя
+Promise.all([api.getCurrentUserInfo(), api.getInitialCards()])
+  .then(([userData, cards]) => {
+    currentUser.setUserInfo(userData);
+    currentUser.id = userData._id;
+    cardList.renderItems(cards.reverse());
+  })
+  .catch((e) => console.log(e));

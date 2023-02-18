@@ -3,8 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no"
+    />
+    <!-- TODO: fix favicon usage with webpack -->
+    <!-- <link
       rel="apple-touch-icon"
       sizes="180x180"
       href="./images/favicon/apple-touch-icon.png"
@@ -21,7 +25,7 @@
       sizes="16x16"
       href="./images/favicon/favicon-16x16.png"
     />
-    <link rel="manifest" href="./images/favicon/site.webmanifest" />
+    <link rel="manifest" href="./images/favicon/site.webmanifest" /> -->
     <!-- уберите ссылку на файл стилей перед сборкой Вебпаком -->
     <!-- <link rel="stylesheet" href="./pages/index.css" /> -->
     <title lang="ru">mesto: да, то самое</title>
@@ -48,7 +52,7 @@
             class="button profile__edit-button"
             aria-label="Кнопка редиктирования профиля"
           ></button>
-          <p class="profile__job">Исследователь океана</p>
+          <p class="profile__about">Исследователь океана</p>
         </div>
         <button
           type="button"
@@ -86,16 +90,16 @@
           />
           <span class="popup__error name-input-error"></span>
           <input
-            class="popup__input popup__input_type_job"
+            class="popup__input popup__input_type_about"
             type="text"
-            name="job"
+            name="about"
             value="Профессия"
             placeholder="Ваша профессия"
             required
             minlength="2"
             maxlength="200"
           />
-          <span class="popup__error job-input-error"></span>
+          <span class="popup__error about-input-error"></span>
           <button
             class="button popup__button popup__save-profile-button"
             type="submit"
@@ -152,6 +156,28 @@
         ></button>
       </div>
     </div>
+    <div class="popup popup_type_del-content">
+      <div class="popup__container" id="popup__container_type_del-content">
+        <h2 class="popup__title">Вы уверены?</h2>
+        <form
+          class="popup__form popup__form_type_del-content"
+          name="delContent"
+          novalidate
+        >
+          <button
+            class="button popup__button popup__del-content-button"
+            type="submit"
+          >
+            Да
+          </button>
+        </form>
+        <button
+          type="button"
+          class="button popup__close-button popup__close-button_place_del-content"
+          aria-label="Кнопка закрытия всплывающего окна"
+        ></button>
+      </div>
+    </div>
     <div class="popup popup_type_image">
       <div
         class="popup__container popup__container_type_image"
@@ -180,11 +206,14 @@
           />
           <div class="content__info">
             <h2 class="content__title"></h2>
-            <button
-              type="button"
-              class="button content__like-button"
-              aria-label="Отметить пост как понравившийся"
-            ></button>
+            <div class="content__like-box">
+              <button
+                type="button"
+                class="button content__like-button"
+                aria-label="Отметить пост как понравившийся"
+              ></button>
+              <span class="content__like-count"></span>
+            </div>
           </div>
           <button
             type="button"

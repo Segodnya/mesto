@@ -1,11 +1,14 @@
+import { popupDelete } from "../utils/util.js";
+
 // класс Card создаёт карточку
 // с текстом и ссылкой на изображение
 export class Card {
   // принимает в конструктор её данные
   // и селектор её template-элемента;
-  constructor({ name, link }, templateSelector, handleCardClick) {
+  constructor({ name, link, likes }, templateSelector, handleCardClick) {
     this._title = name;
     this._image = link;
+    this._likes = likes;
     this._templateSelector = templateSelector;
     // класс Card cвязан с попапом.
     // Card принимает в конструктор функцию handleCardClick.
@@ -42,8 +45,9 @@ export class Card {
     this._likeBtn.classList.toggle("content__like-button_active");
   }
   _handleDeleteButton() {
-    this._element.remove();
-    this._element = null;
+    popupDelete.open();
+    // this._element.remove();
+    // this._element = null;
   }
 
   // содержит один публичный метод, который возвращает
@@ -54,6 +58,9 @@ export class Card {
     // Так у других элементов появится доступ к ней.
     this._element = this._getTemplate();
     this._likeBtn = this._element.querySelector(".content__like-button");
+    // Устанавливаем кол-во лайков
+    this._likesQty = this._element.querySelector(".content__like-count");
+    this._likesQty.textContent = this._likes.length;
     this._deleteBtn = this._element.querySelector(".content__delete-button");
     // Добавим данные
     this._imgElement = this._element.querySelector(".content__image");
