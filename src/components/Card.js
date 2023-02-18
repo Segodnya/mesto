@@ -5,15 +5,17 @@ import { popupDelete } from "../utils/util.js";
 export class Card {
   // принимает в конструктор её данные
   // и селектор её template-элемента;
-  constructor({ name, link, likes }, templateSelector, handleCardClick) {
-    this._title = name;
-    this._image = link;
-    this._likes = likes;
+  constructor(data, templateSelector, handleCardClick, userId) {
+    this._title = data.name;
+    this._image = data.link;
+    this._likes = data.likes;
     this._templateSelector = templateSelector;
     // класс Card cвязан с попапом.
     // Card принимает в конструктор функцию handleCardClick.
     // Эта функция открывает попап с картинкой при клике на карточку.
     this._handleCardClick = handleCardClick;
+    this._ownerId = data.owner._id;
+    this._userId = userId;
   }
 
   // содержит приватные методы, которые работают с разметкой,
@@ -62,6 +64,9 @@ export class Card {
     this._likesQty = this._element.querySelector(".content__like-count");
     this._likesQty.textContent = this._likes.length;
     this._deleteBtn = this._element.querySelector(".content__delete-button");
+    if (this._ownerId !== this._userId) {
+      this._deleteBtn.remove();
+    }
     // Добавим данные
     this._imgElement = this._element.querySelector(".content__image");
     this._imgElement.src = this._image;

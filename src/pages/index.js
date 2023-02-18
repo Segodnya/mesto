@@ -27,7 +27,12 @@ let userId;
 // Для каждой карточки создайте экземпляр класса Card.
 function createCard(data) {
   // Создадим экземпляр карточки
-  const card = new Card(data, "#content__card-template", showPopupWithImage);
+  const card = new Card(
+    data,
+    "#content__card-template",
+    showPopupWithImage,
+    userId
+  );
   // Создаём карточку и возвращаем наружу
   const cardElement = card.generateCard();
   return cardElement;
@@ -137,7 +142,7 @@ const cardList = new Section(
 Promise.all([api.getCurrentUserInfo(), api.getInitialCards()])
   .then(([userData, cards]) => {
     currentUser.setUserInfo(userData);
-    currentUser.id = userData._id;
+    userId = userData._id;
     cardList.renderItems(cards.reverse());
   })
   .catch((e) => console.log(e));
