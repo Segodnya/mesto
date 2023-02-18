@@ -54,6 +54,32 @@ export class Api {
     return this._handleResponse(res);
   }
 
+  // Удаление карточки с сервера
+  async deleteCard(cardId) {
+    const res = await fetch(`${this._baseUrl}/cards/${cardId}`, {
+      method: "DELETE",
+      headers: this._headers,
+    });
+    return this._handleResponse(res);
+  }
+
+  // Постановка и снятие лайка
+  async addLike(cardId) {
+    const res = await fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+      method: "PUT",
+      headers: this._headers,
+    });
+    return this._handleResponse(res);
+  }
+
+  async removeLike(cardId) {
+    const res = await fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+      method: "DELETE",
+      headers: this._headers,
+    });
+    return this._handleResponse(res);
+  }
+
   // Обновление аватара пользователя:
   async updateUserAvatar(data) {
     const res = await fetch(`${this._baseUrl}/users/me/avatar`, {
