@@ -35,11 +35,28 @@ function createCard(data) {
     data,
     "#content__card-template",
     showPopupWithImage,
-    userId
+    userId,
+    async () => {
+      try {
+        const res = await api.addLike(data._id);
+        card.like();
+        card.setLikesCount(res);
+      } catch (e) {
+        console.warn(e);
+      }
+    },
+    async () => {
+      try {
+        const res = await api.removeLike(data._id);
+        card.dislike();
+        card.setLikesCount(res);
+      } catch (e) {
+        console.warn(e);
+      }
+    }
   );
   // Создаём карточку и возвращаем наружу
-  const cardElement = card.generateCard();
-  return cardElement;
+  return card.generateCard();
 }
 
 //Открытие увеличенной картинки

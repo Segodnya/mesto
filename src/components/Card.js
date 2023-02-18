@@ -5,7 +5,7 @@ import { popupDelete } from "../utils/util.js";
 export class Card {
   // принимает в конструктор её данные
   // и селектор её template-элемента;
-  constructor(data, templateSelector, handleCardClick, userId) {
+  constructor(data, templateSelector, handleCardClick, userId, like, dislike) {
     this._title = data.name;
     this._image = data.link;
     this._likes = data.likes;
@@ -14,8 +14,11 @@ export class Card {
     // Card принимает в конструктор функцию handleCardClick.
     // Эта функция открывает попап с картинкой при клике на карточку.
     this._handleCardClick = handleCardClick;
+    this._id = data.id;
     this._ownerId = data.owner._id;
     this._userId = userId;
+    this._like = like;
+    this._dislike = dislike;
   }
 
   // содержит приватные методы, которые работают с разметкой,
@@ -32,7 +35,12 @@ export class Card {
   // устанавливают слушателей событий;
   _setEventListeners() {
     this._likeBtn.addEventListener("click", () => {
-      this._handleLikeButton();
+      if (this._likeBtn.classList.contains("content__like-button_active")) {
+        this._dislike();
+      } else {
+        this._like();
+      }
+      // this._handleLikeButton();
     });
     this._deleteBtn.addEventListener("click", () => {
       this._handleDeleteButton();
@@ -50,6 +58,29 @@ export class Card {
     popupDelete.open();
     // this._element.remove();
     // this._element = null;
+  }
+
+  // Проверим, есть ли лайк текущего пользователя у карточки
+  _isLiked() {
+    this._likes.forEach((user) => {
+      if (user._id === this._userId) {
+        this.like();
+      } else {
+        this.dislike();
+      }
+    });
+  }
+
+  like() {
+    this._likeBtn.classList.add("content__like-button_active");
+  }
+
+  dislike() {
+    this._likeBtn.classList.remove("content__like-button_active");
+  }
+
+  setLikesCount(res) {
+    this._likesQty.textContent = `${res.likes.length}`;
   }
 
   // содержит один публичный метод, который возвращает
@@ -74,7 +105,7 @@ export class Card {
     this._element.querySelector(".content__title").textContent = this._title;
     // Установим обработчики
     this._setEventListeners();
-
+    this._isLiked();
     // Вернём элемент наружу
     return this._element;
   }
