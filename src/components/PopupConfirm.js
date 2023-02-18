@@ -1,24 +1,28 @@
 import { Popup } from "./Popup.js";
 
-export class PopupWithDeleteBtn extends Popup {
-  constructor(selector, handleSubmitForm) {
-    super(selector);
-    this._handleSubmitForm = handleSubmitForm;
+export class PopupConfirm extends Popup {
+  constructor(popup, handleSubmit) {
+    super(popup);
+    this._handleSubmit = handleSubmit;
     this._popupForm = this._popup.querySelector(".popup__form");
+  }
+
+  open(card) {
+    this._card = card;
+    super.open();
   }
 
   // перезаписывает родительский метод setEventListeners.
   setEventListeners() {
     super.setEventListeners();
-    this._popupForm.addEventListener("submit", (e) => {
+    this._popupForm.addEventListener("submit", (evt) => {
       // Отмена стандартной формы отправки
-      e.preventDefault();
-      console.log("click");
-      this.close();
+      evt.preventDefault();
+      this._handleSubmit(this._card);
     });
   }
 
-  close() {
+  /* close() {
     super.close();
-  }
+  } */
 }

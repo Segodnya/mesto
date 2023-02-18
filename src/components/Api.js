@@ -40,7 +40,6 @@ export class Api {
         about: data.about,
       }),
     });
-    console.log(res);
     return this._handleResponse(res);
   }
 

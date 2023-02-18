@@ -1,11 +1,17 @@
-import { popupDelete } from "../utils/util.js";
-
 // класс Card создаёт карточку
 // с текстом и ссылкой на изображение
 export class Card {
   // принимает в конструктор её данные
   // и селектор её template-элемента;
-  constructor(data, templateSelector, handleCardClick, userId, like, dislike) {
+  constructor(
+    data,
+    templateSelector,
+    handleCardClick,
+    userId,
+    like,
+    dislike,
+    deleteCard
+  ) {
     this._title = data.name;
     this._image = data.link;
     this._likes = data.likes;
@@ -14,11 +20,12 @@ export class Card {
     // Card принимает в конструктор функцию handleCardClick.
     // Эта функция открывает попап с картинкой при клике на карточку.
     this._handleCardClick = handleCardClick;
-    this._id = data.id;
+    this._id = data._id;
     this._ownerId = data.owner._id;
     this._userId = userId;
     this._like = like;
     this._dislike = dislike;
+    this._deleteCard = deleteCard;
   }
 
   // содержит приватные методы, которые работают с разметкой,
@@ -40,34 +47,19 @@ export class Card {
       } else {
         this._like();
       }
-      // this._handleLikeButton();
     });
     this._deleteBtn.addEventListener("click", () => {
-      this._handleDeleteButton();
+      this._deleteCard(this._id);
     });
     this._imgElement.addEventListener("click", () => {
       this._handleCardClick(this._title, this._image);
     });
   }
 
-  // содержит приватные методы для каждого обработчика;
-  _handleLikeButton() {
-    this._likeBtn.classList.toggle("content__like-button_active");
-  }
-  _handleDeleteButton() {
-    popupDelete.open();
-    // this._element.remove();
-    // this._element = null;
-  }
-
   // Проверим, есть ли лайк текущего пользователя у карточки
   _isLiked() {
     this._likes.forEach((user) => {
-      if (user._id === this._userId) {
-        this.like();
-      } else {
-        this.dislike();
-      }
+      user._id === this._userId ? this.like() : this.dislike();
     });
   }
 
@@ -81,6 +73,11 @@ export class Card {
 
   setLikesCount(res) {
     this._likesQty.textContent = `${res.likes.length}`;
+  }
+
+  remove() {
+    this._element.remove();
+    this._element = null;
   }
 
   // содержит один публичный метод, который возвращает

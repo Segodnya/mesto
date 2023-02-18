@@ -7,12 +7,14 @@ import { FormValidator } from "../components/FormValidator.js";
 import { Section } from "../components/Section.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
+import { PopupConfirm } from "../components/PopupConfirm.js";
 import { UserInfo } from "../components/UserInfo.js";
 import {
   popupEditProfile,
   popupAddContent,
   popupShowImage,
   popupUpdateAvatar,
+  popupDelContent,
   buttonEditProfile,
   buttonAddContent,
   buttonUpdateAvatar,
@@ -53,6 +55,9 @@ function createCard(data) {
       } catch (e) {
         console.warn(e);
       }
+    },
+    () => {
+      popupConfirm.open(card);
     }
   );
   // Создаём карточку и возвращаем наружу
@@ -158,7 +163,18 @@ const popupAvatar = new PopupWithForm(
   popupUpdateAvatar,
   handleSubmitFormUpdateAvatar
 );
+const popupConfirm = new PopupConfirm(popupDelContent, async (card) => {
+  console.log(card._id);
+  api
+    .deleteCard(card._id)
+    .then(() => {
+      card.remove();
+      popupConfirm.close();
+    })
+    .catch((err) => console.log(err));
+});
 
+popupConfirm.setEventListeners();
 popupImage.setEventListeners();
 popupAdd.setEventListeners();
 popupEdit.setEventListeners();

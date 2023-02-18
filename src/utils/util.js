@@ -2,9 +2,6 @@ const popupImage = document.querySelector(".popup_type_image");
 const popupImageElement = document.querySelector(".popup__image");
 const popupImageCaption = document.querySelector(".popup__caption");
 
-import { popupDelContent } from "./constants.js";
-import { PopupWithDeleteBtn } from "../components/PopupWithDeleteBtn.js";
-
 export function openPopup(currentPopup) {
   currentPopup.classList.add("popup_opened");
   document.addEventListener("keydown", closePopupByEsc);
@@ -31,11 +28,3 @@ export const closePopupByEsc = (event) => {
     }
   }
 };
-
-// Форма удаления карточки
-function handleSubmitFormDelContent() {}
-export const popupDelete = new PopupWithDeleteBtn(
-  popupDelContent,
-  handleSubmitFormDelContent
-);
-popupDelete.setEventListeners();
