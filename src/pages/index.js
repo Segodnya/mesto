@@ -71,6 +71,10 @@ function showPopupWithImage(name, link) {
 
 // Форма редактирования профиля
 function handleSubmitFormEditProfile(data) {
+  const btnOrigText =
+    popupEditProfile.querySelector(".popup__button").textContent;
+  popupEditProfile.querySelector(".popup__button").textContent =
+    "Сохранение...";
   api
     .editUserInfo(data)
     .then((userData) => {
@@ -78,10 +82,15 @@ function handleSubmitFormEditProfile(data) {
       popupEdit.close();
     })
     .catch((err) => console.log(err));
+  popupEditProfile.querySelector(".popup__button").textContent = btnOrigText;
 }
 
 // Форма обновления аватара
 function handleSubmitFormUpdateAvatar(data) {
+  const btnOrigText =
+    popupUpdateAvatar.querySelector(".popup__button").textContent;
+  popupUpdateAvatar.querySelector(".popup__button").textContent =
+    "Сохранение...";
   api
     .updateUserAvatar(data)
     .then((userData) => {
@@ -90,10 +99,14 @@ function handleSubmitFormUpdateAvatar(data) {
       popupAvatar.close();
     })
     .catch((err) => console.log(err));
+  popupUpdateAvatar.querySelector(".popup__button").textContent = btnOrigText;
 }
 
 // Форма добавления карточек
 function handleSubmitFormAddContent(data) {
+  const btnOrigText =
+    popupAddContent.querySelector(".popup__button").textContent;
+  popupAddContent.querySelector(".popup__button").textContent = "Сохранение...";
   api
     .addCard(data)
     .then((newCard) => {
@@ -101,6 +114,7 @@ function handleSubmitFormAddContent(data) {
       popupAdd.close();
     })
     .catch((err) => console.log(err));
+  popupAddContent.querySelector(".popup__button").textContent = btnOrigText;
 }
 
 // Попап редактирования профиля
@@ -164,7 +178,9 @@ const popupAvatar = new PopupWithForm(
   handleSubmitFormUpdateAvatar
 );
 const popupConfirm = new PopupConfirm(popupDelContent, async (card) => {
-  console.log(card._id);
+  const btnOrigText =
+    popupDelContent.querySelector(".popup__button").textContent;
+  popupDelContent.querySelector(".popup__button").textContent = "Сохранение...";
   api
     .deleteCard(card._id)
     .then(() => {
@@ -172,6 +188,7 @@ const popupConfirm = new PopupConfirm(popupDelContent, async (card) => {
       popupConfirm.close();
     })
     .catch((err) => console.log(err));
+  popupDelContent.querySelector(".popup__button").textContent = btnOrigText;
 });
 
 popupConfirm.setEventListeners();
