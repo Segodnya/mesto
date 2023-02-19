@@ -131,7 +131,8 @@ buttonUpdateAvatar.addEventListener(
   "click",
   () => {
     popupAvatar.open();
-    popupAvatar.setInputsValues(currentUser.getUserInfo());
+    // popupAvatar.setInputsValues(currentUser.getUserInfo());
+    validatorFormAddContent.disableSubmitButton();
     validatorFormEditProfile.hideInputErros();
   },
   false
