@@ -68,9 +68,7 @@ export class FormValidator {
   }
 
   _hasInvalidInput() {
-    return this._inputList.some((inputElement) => {
-      return !inputElement.validity.valid;
-    });
+    return this._inputList.some((inputElement) => !inputElement.validity.valid);
   }
 
   // изменяют состояние кнопки сабмита,
@@ -84,17 +82,12 @@ export class FormValidator {
     }
   }
 
-  disableSubmitButton(_buttonElement, _formElement) {
-    this._buttonElement.classList.add(this._inactiveButtonClass);
-    this._buttonElement.disabled = true;
-  }
-
   // имеет публичный метод enableValidation,
   // который включает валидацию формы.
   enableValidation() {
-    this._setEventListeners();
     this._formElement.addEventListener("submit", (e) => {
       e.preventDefault();
     });
+    this._setEventListeners();
   }
 }

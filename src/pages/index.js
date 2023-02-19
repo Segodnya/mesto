@@ -131,9 +131,7 @@ buttonUpdateAvatar.addEventListener(
   "click",
   () => {
     popupAvatar.open();
-    // popupAvatar.setInputsValues(currentUser.getUserInfo());
-    validatorFormAddContent.disableSubmitButton();
-    validatorFormEditProfile.hideInputErros();
+    validatorFormUpdateAvatar.hideInputErros();
   },
   false
 );
@@ -143,7 +141,6 @@ buttonAddContent.addEventListener(
   "click",
   () => {
     popupAdd.open();
-    validatorFormAddContent.disableSubmitButton();
     validatorFormAddContent.hideInputErros();
   },
   false
@@ -154,17 +151,16 @@ const validatorFormEditProfile = new FormValidator(
   validationConfig,
   formEditProfile
 );
+validatorFormEditProfile.enableValidation();
 const validatorFormAddContent = new FormValidator(
   validationConfig,
   formAddContent
 );
+validatorFormAddContent.enableValidation();
 const validatorFormUpdateAvatar = new FormValidator(
   validationConfig,
   formUpdateAvatar
 );
-
-validatorFormEditProfile.enableValidation();
-validatorFormAddContent.enableValidation();
 validatorFormUpdateAvatar.enableValidation();
 
 // Для каждого попапа создавайте свой экземпляр класса PopupWithForm
