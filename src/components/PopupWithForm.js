@@ -30,11 +30,18 @@ export class PopupWithForm extends Popup {
   // но и добавляет обработчик сабмита формы
   setEventListeners() {
     super.setEventListeners();
-    this._popupForm.addEventListener("submit", (e) => {
+    this._popupForm.addEventListener("submit", (evt) => {
       // Отмена стандартной формы отправки
-      e.preventDefault();
-      this._handleSubmitForm(this._getInputValues());
-      this.close();
+      evt.preventDefault();
+      // перед запросом сохраняем изначальный текст кнопки
+      const initialText = evt.submitter.textContent;
+      // меняем его, чтобы показать пользователю ожидание
+      evt.submitter.textContent = "Сохранение...";
+      this._handleSubmitForm(this._getInputValues())
+        .then(() => this.close()) // закрывается попап в `then`
+        .finally(() => {
+          evt.submitter.textContent = initialText;
+        }); // в любом случае меняется текст кнопки обратно на начальный в `finally`
     });
   }
 

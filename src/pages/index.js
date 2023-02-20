@@ -70,51 +70,37 @@ function showPopupWithImage(name, link) {
 }
 
 // Форма редактирования профиля
-function handleSubmitFormEditProfile(data) {
-  const btnOrigText =
-    popupEditProfile.querySelector(".popup__button").textContent;
-  popupEditProfile.querySelector(".popup__button").textContent =
-    "Сохранение...";
-  api
-    .editUserInfo(data)
-    .then((userData) => {
-      currentUser.setUserInfo(userData);
-      popupEdit.close();
-    })
-    .catch((err) => console.log(err));
-  popupEditProfile.querySelector(".popup__button").textContent = btnOrigText;
+async function handleSubmitFormEditProfile(data) {
+  try {
+    const userData = await api.editUserInfo(data);
+    currentUser.setUserInfo(userData);
+    popupEdit.close();
+  } catch (err) {
+    return console.log(err);
+  }
 }
 
 // Форма обновления аватара
-function handleSubmitFormUpdateAvatar(data) {
-  const btnOrigText =
-    popupUpdateAvatar.querySelector(".popup__button").textContent;
-  popupUpdateAvatar.querySelector(".popup__button").textContent =
-    "Сохранение...";
-  api
-    .updateUserAvatar(data)
-    .then((userData) => {
-      currentUser.setUserInfo(userData);
-      avatarProfile.src = userData.avatar;
-      popupAvatar.close();
-    })
-    .catch((err) => console.log(err));
-  popupUpdateAvatar.querySelector(".popup__button").textContent = btnOrigText;
+async function handleSubmitFormUpdateAvatar(data) {
+  try {
+    const userData = await api.updateUserAvatar(data);
+    currentUser.setUserInfo(userData);
+    avatarProfile.src = userData.avatar;
+    popupAvatar.close();
+  } catch (err) {
+    return console.log(err);
+  }
 }
 
 // Форма добавления карточек
-function handleSubmitFormAddContent(data) {
-  const btnOrigText =
-    popupAddContent.querySelector(".popup__button").textContent;
-  popupAddContent.querySelector(".popup__button").textContent = "Сохранение...";
-  api
-    .addCard(data)
-    .then((newCard) => {
-      cardList.addItem(createCard(newCard));
-      popupAdd.close();
-    })
-    .catch((err) => console.log(err));
-  popupAddContent.querySelector(".popup__button").textContent = btnOrigText;
+async function handleSubmitFormAddContent(data) {
+  try {
+    const newCard = await api.addCard(data);
+    cardList.addItem(createCard(newCard));
+    popupAdd.close();
+  } catch (err) {
+    return console.log(err);
+  }
 }
 
 // Попап редактирования профиля
@@ -175,9 +161,6 @@ const popupAvatar = new PopupWithForm(
   handleSubmitFormUpdateAvatar
 );
 const popupConfirm = new PopupConfirm(popupDelContent, async (card) => {
-  const btnOrigText =
-    popupDelContent.querySelector(".popup__button").textContent;
-  popupDelContent.querySelector(".popup__button").textContent = "Сохранение...";
   api
     .deleteCard(card._id)
     .then(() => {
@@ -185,7 +168,6 @@ const popupConfirm = new PopupConfirm(popupDelContent, async (card) => {
       popupConfirm.close();
     })
     .catch((err) => console.log(err));
-  popupDelContent.querySelector(".popup__button").textContent = btnOrigText;
 });
 
 popupConfirm.setEventListeners();
@@ -229,4 +211,4 @@ Promise.all([api.getCurrentUserInfo(), api.getInitialCards()])
     avatarProfile.src = userData.avatar;
     cardList.renderItems(cards.reverse());
   })
-  .catch((e) => console.log(e));
+  .catch((err) => console.log(err));
