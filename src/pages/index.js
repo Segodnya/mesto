@@ -85,7 +85,6 @@ async function handleSubmitFormUpdateAvatar(data) {
   try {
     const userData = await api.updateUserAvatar(data);
     currentUser.setUserInfo(userData);
-    avatarProfile.src = userData.avatar;
     popupAvatar.close();
   } catch (err) {
     return console.log(err);
@@ -208,7 +207,6 @@ Promise.all([api.getCurrentUserInfo(), api.getInitialCards()])
   .then(([userData, cards]) => {
     currentUser.setUserInfo(userData);
     userId = userData._id;
-    avatarProfile.src = userData.avatar;
     cardList.renderItems(cards.reverse());
   })
   .catch((err) => console.log(err));

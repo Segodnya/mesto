@@ -25,6 +25,6 @@ export class UserInfo {
   setUserInfo(data) {
     if (data.name) this._name.textContent = data.name;
     if (data.about) this._about.textContent = data.about;
-    if (data.avatar) this._avatar.textContent = data.avatar;
+    if (data.avatar) this._avatar.src = data.avatar;
   }
 }
