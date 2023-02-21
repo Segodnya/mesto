@@ -47,7 +47,7 @@ module.exports = {
       // добавили правило для обработки файлов
       {
         // регулярное выражение, которое ищет все файлы с такими расширениями
-        test: /\.(png|svg|jpg|gif|woff(2)?|eot|ttf|otf)$/,
+        test: /\.(png|svg|jpg|gif|woff(2)?|eot|ttf|otf|webmanifest)$/,
         type: "asset/resource",
       },
       {
