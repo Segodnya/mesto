@@ -67,103 +67,103 @@ Mesto: интерактивный сервис, куда можно добавл
 0. Повторная инициализация не требуется - после git pull достаточно запустить команду npm i в папке с проектом (все зависимости, указанные в package.json, подгрузятся автоматически).
 
 1. Создать packaje.json (после этого - дополнить свойство author):
-
-- npm init -y
-
+```
+npm init -y
+```
 2. Обновить NPM до последней версии:
-
-- sudo npm upgrade -g npm
-
+```
+sudo npm upgrade -g npm
+```
 3. Переключение между репозиториями:
-
-- npm set registry https://npm.prakticum-team.ru
-- npm set registry https://registry.npmjs.org/
-
+```
+npm set registry https://npm.prakticum-team.ru
+npm set registry https://registry.npmjs.org/
+```
 4. Установить Webpack:
-
-- npm i webpack --save-dev
-- npm i webpack-cli --save-dev
-
+```
+npm i webpack --save-dev
+npm i webpack-cli --save-dev
+```
 5. Установить локальный сервер:
-
-- npm i webpack-dev-server --save-dev
-
+```
+npm i webpack-dev-server --save-dev
+```
 6. Новый синтаксис при сборке превращают в старый (транспиляция):
-
-- npm i @babel/core --save-dev
-- npm i @babel/preset-env --save-dev
-
+```
+npm i @babel/core --save-dev
+npm i @babel/preset-env --save-dev
+```
 7. Иногда «переделка» синтаксиса не помогает. Это можно обойти — загрузить недостающую функциональность в браузер пользователя вместе с нашим проектом. Такие самодельные аналоги новой функциональности называются полифилы.
-
-- npm i core-js --save
-
+```
+npm i core-js --save
+```
 8. Установить пакет, который позволяет подключить Babel к Webpack:
-
-- npm i babel-loader --save-dev
-
+```
+npm i babel-loader --save-dev
+```
 9. Подключение HTML:
-
-- npm i html-webpack-plugin --save-dev
-
+```
+npm i html-webpack-plugin --save-dev
+```
 10. Нам нужен плагин, который будет каждый раз при сборке проекта удалять содержимое папки dist:
-
-- npm i clean-webpack-plugin --save-dev
-
+```
+npm i clean-webpack-plugin --save-dev
+```
 11. Работа с изображениями:
     11.1. JS:
-
-- import jordanImage from './images/jordan.jpg';
-- const jordanImage = new URL('./images/jordan.jpg', import.meta.url);
-
+```
+import jordanImage from './images/jordan.jpg';
+const jordanImage = new URL('./images/jordan.jpg', import.meta.url);
+```
   11.2. HTML:
-
-- src="<%=require('./images/logo.png')%>"
-
+```
+src="<%=require('./images/logo.png')%>"
+```
   11.3. CSS:
 
 - можно оставить относительные пути.
 
 12. Обработка CSS:
-
-- npm i css-loader --save-dev
-- npm i mini-css-extract-plugin --save-dev
-
+```
+npm i css-loader --save-dev
+npm i mini-css-extract-plugin --save-dev
+```
 13. Минификация CSS и добавление префиксов:
 
 Первый пакет postcss-loader нужен, чтобы подключить PostCSS к «Вебпаку». Плагин autoprefixer научит PostCSS добавлять вендорные префиксы, а cssnano займётся минификацией css-кода.
-
-- npm i postcss-loader --save-dev
-- npm i autoprefixer --save-dev
-- npm i cssnano --save-dev
-
+```
+npm i postcss-loader --save-dev
+npm i autoprefixer --save-dev
+npm i cssnano --save-dev
+```
 Собрать проект одной из команд:
-
-- npm run build
-- npm run dev
-
+```
+npm run build
+npm run dev
+```
 Остановка работы локального сервера - Ctrl + C в терминале.
 
 **Настройка деплоя на GH Pages**
 
 1. Установить пакет gh-pages
-
-- npm install gh-pages --save-dev
-
+```
+npm install gh-pages --save-dev
+```
 2. Добавьте в package.json новый скрипт — deploy. Этот скрипт должен вызывать пакет gh-pages и передавать ему папку, в которой находится собранный проект. В нашем случае это папка dist. Чтобы не делать сборку каждый раз вручную, можно сказать npm, чтобы перед каждым вызовом скрипта deploy вызывался build.
-
+```
 scripts: {
 "predeploy": "npm run build",
 "deploy": "gh-pages -d dist"
 }
-
+```
 4. Запуск
-
-- npm run deploy
-
+```
+npm run deploy
+```
 5. При возникновении ошибки Couldn't find remote ref refs/heads/gh-pages
-
-- npx gh-pages-clean
-
+```
+npx gh-pages-clean
+```
 **TODO**
 
 - ;
